@@ -896,6 +896,8 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
                 this.chLineNumbers.setValue((props.get_SuppressLineNumbers() !== null && props.get_SuppressLineNumbers() !== undefined) ? props.get_SuppressLineNumbers() : 'indeterminate', true);
               
 
+                this.chSnapToGrid.setValue((props.get_SnapToGrid() !== null && props.get_SnapToGrid() !== undefined) ? props.get_SnapToGrid() : 'indeterminate', true);
+
                 this.Borders = new Asc.asc_CParagraphBorders(props.get_Borders());
 
                 // Margins
