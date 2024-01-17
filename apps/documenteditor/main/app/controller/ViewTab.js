@@ -85,6 +85,7 @@ define([
                     'zoom:topage': _.bind(this.onBtnZoomTo, this, 'topage'),
                     'zoom:towidth': _.bind(this.onBtnZoomTo, this, 'towidth'),
                     'rulers:change': _.bind(this.onChangeRulers, this),
+                    'docgrid:change': _.bind(this.onChangeDocGrid, this),
                     'darkmode:change': _.bind(this.onChangeDarkMode, this)
                 },
                 'Toolbar': {
@@ -304,12 +305,16 @@ define([
                 }, 500);
                 Common.UI.Themes.setContentTheme(isdarkmode?'dark':'light');
             } else
-                this.onContentThemeChangedToDark(Common.UI.Themes.isContentThemeDark());
+                this.onContentThemeChangedToDark(Common.UI.Themes.isContentThemeDark());            
         },
 
-        onContentThemeChangedToDark: function (isdark) {
-            this.view && this.view.btnDarkDocument.toggle(isdark, true);
-        },
+        onChangeDocGrid: function (btn, checked) {
+            Common.localStorage.setBool('de-hidden-docgrid', !checked);
+            Common.Utils.InternalSettings.set("de-hidden-docgrid", !checked);
+            this.api.asc_SetViewDocGrid(checked);
+            Common.NotificationCenter.trigger('layout:changed', 'docgrid');
+            Common.NotificationCenter.trigger('edit:complete', this.view);
+        },              
 
         onThemeChanged: function () {
             if (this.view && Common.UI.Themes.available()) {

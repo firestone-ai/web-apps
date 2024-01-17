@@ -32,6 +32,11 @@
             <div id="paragraph-checkbox-add-interval"></div>
         </td>
     </tr>
+    <tr class="text-only">
+        <td class="padding-small" colspan=2>
+            <div id="paragraph-checkbox-snap-to-grid"></div>
+        </td>
+    </tr>
     <tr>
         <td class="padding-small" colspan=2>
             <div class="separator horizontal"></div>

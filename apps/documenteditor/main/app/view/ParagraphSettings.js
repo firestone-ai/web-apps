@@ -72,7 +72,8 @@ define([
                 LineHeight: null,
                 LineSpacingBefore: null,
                 LineSpacingAfter: null,
-                AddInterval: false,
+                AddInterval: false,                
+                SnapToGrid: true,
                 BackColor: '#000000',
                 DisabledControls: true,
                 HideTextOnlySettings: false,
@@ -185,6 +186,16 @@ define([
             });
             this.lockedControls.push(this.chAddInterval);
 
+            this.chSnapToGrid = new Common.UI.CheckBox({
+                el: $markup.findById('#paragraph-checkbox-snap-to-grid'),
+                labelText: this.strSnapToGrid,
+                disabled: this._locked,
+                dataHint: '1',
+                dataHintDirection: 'left',
+                dataHintOffset: 'small'
+            });
+            this.lockedControls.push(this.chSnapToGrid);
+
             this.btnColor = new Common.UI.ColorButton({
                 parentEl: $markup.findById('#paragraph-color-btn'),
                 disabled: this._locked,
@@ -270,6 +281,7 @@ define([
             this.numSpacingBefore.on('inputleave', function(){ me.fireEvent('editcomplete', me);});
             this.numSpacingAfter.on('inputleave', function(){ me.fireEvent('editcomplete', me);});
             this.chAddInterval.on('change', this.onAddIntervalChange.bind(this));
+            this.chSnapToGrid.on('change', this.onSnapToGridChange.bind(this));
             this.cmbLineRule.on('selected', this.onLineRuleSelect.bind(this));
             this.cmbLineRule.on('hide:after', this.onHideMenus.bind(this));
             this.btnColor.on('color:select', this.onColorPickerSelect.bind(this));
@@ -329,6 +341,12 @@ define([
         onAddIntervalChange: function(field, newValue, oldValue, eOpts){
             if (this.api)
                 this.api.put_AddSpaceBetweenPrg((field.getValue()=='checked'));
+            this.fireEvent('editcomplete', this);
+        },
+
+        onSnapToGridChange: function(field, newValue, oldValue, eOpts) {
+            if (this.api)
+                this.api.put_SnapToGrid((field.getValue()=='checked'));
             this.fireEvent('editcomplete', this);
         },
 
@@ -461,11 +479,13 @@ define([
                     Line: prop.get_Spacing().get_Line(),
                     Before: prop.get_Spacing().get_Before(),
                     After: prop.get_Spacing().get_After(),
-                    LineRule: prop.get_Spacing().get_LineRule()
+                    LineRule: prop.get_Spacing().get_LineRule(),
+                    
                 };
 
                 var other = {
-                    ContextualSpacing: prop.get_ContextualSpacing()
+                    ContextualSpacing: prop.get_ContextualSpacing(),
+                    SnapToGrid: prop.get_SnapToGrid()
                 };
 
                 if ( this._state.LineRuleIdx!==Spacing.LineRule ) {
@@ -507,6 +527,11 @@ define([
                 if ( this._state.AddInterval!==other.ContextualSpacing ) {
                     this.chAddInterval.setValue((other.ContextualSpacing !== null && other.ContextualSpacing !== undefined) ? other.ContextualSpacing : 'indeterminate', true);
                     this._state.AddInterval=other.ContextualSpacing;
+                }
+
+                if (this._state.SnapToGrid!==other.SnapToGrid) {
+                    this.chSnapToGrid.setValue((other.SnapToGrid !== null && other.SnapToGrid !== undefined) ? other.SnapToGrid : 'indeterminate', true);
+                    this._state.SnapToGrid = other.SnapToGrid;
                 }
 
                 var indents = prop.get_Ind(),
@@ -700,6 +725,7 @@ define([
 
         strParagraphSpacing:    'Paragraph Spacing',
         strSomeParagraphSpace:  'Don\'t add interval between paragraphs of the same style',
+        strSnapToGrid:          'Snap to grid when document grid is defined',
         strLineHeight:          'Line Spacing',
         strSpacingBefore:       'Before',
         strSpacingAfter:        'After',
