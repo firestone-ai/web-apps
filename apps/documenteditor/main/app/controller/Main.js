@@ -1814,6 +1814,10 @@ define([
                     Common.Utils.InternalSettings.set("de-hidden-rulers", value);
                     me.api.asc_SetViewRulers(!value);
 
+                    value = Common.localStorage.itemExists('de-hidden-docgrid') ? Common.localStorage.getBool('de-hidden-docgrid') : (this.appOptions.customization && !!this.appOptions.customization.hideDocGrid);
+                    Common.Utils.InternalSettings.set("de-hidden-docgrid", value);
+                    me.api.asc_SetViewDocGrid(!value);
+
                     me.api.asc_registerCallback('asc_onDocumentCanSaveChanged',  _.bind(me.onDocumentCanSaveChanged, me));
                     /** coauthoring begin **/
                     me.api.asc_registerCallback('asc_onCollaborativeChanges',    _.bind(me.onCollaborativeChanges, me));
