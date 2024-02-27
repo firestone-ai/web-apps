@@ -219,6 +219,9 @@ define([
                 this.leftMenu.setOptionsPanel('history', this.getApplication().getController('Common.Controllers.History').getView('Common.Views.History'));
 
             this.leftMenu.setOptionsPanel('navigation', this.getApplication().getController('Navigation').getView('Navigation'));
+            // chongxishen
+            this.leftMenu.setOptionsPanel('menuBiyue', this.getApplication().getController('BiyueNavigation').getView('BiyueNavigation'));
+            // ---
 
             if (this.mode.canUseThumbnails) {
                 this.leftMenu.setOptionsPanel('thumbnails', this.getApplication().getController('PageThumbnails').getView('PageThumbnails'));
@@ -732,6 +735,13 @@ define([
                         this.leftMenu.panelNavigation.hide();
                         this.leftMenu.onBtnMenuClick(this.leftMenu.btnNavigation);
                     }
+                    // chongxishen
+                    else if (this.leftMenu.btnBiyue.isActive()) {
+                        this.leftMenu.btnBiyue.toggle(false);
+                        this.leftMenu.panelBiyue.hide();
+                        this.leftMenu.onBtnMenuClick(this.leftMenu.btnBiyue);
+                    }
+                    // ---
                 }
             }
         },

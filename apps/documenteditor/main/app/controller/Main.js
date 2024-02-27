@@ -192,7 +192,7 @@ define([
                 Common.UI.HintManager.init(this.api);
                 Common.UI.Themes.init(this.api);
 
-                if (this.api){
+                if (this.api) {
                     this.api.SetDrawingFreeze(true);
 
                     var value = Common.localStorage.getBool("de-settings-cachemode", true);
@@ -604,6 +604,7 @@ define([
                     Common.Gateway.reportError(Asc.c_oAscError.ID.AccessDeny, this.errorAccessDeny);
                     return;
                 }
+                console.log("onDownloadAs: " + format);
 
                 this._state.isFromGatewayDownloadAs = true;
                 var _format = (format && (typeof format == 'string')) ? Asc.c_oAscFileType[ format.toUpperCase() ] : null,
@@ -887,6 +888,9 @@ define([
                 }
                 if (options.navigation && options.navigation.previewMode) {
                     app.getController('Navigation') && app.getController('Navigation').SetDisabled(disable);
+                    // chongxishen
+                    app.getController('BiyueNavigation') && app.getController('BiyueNavigation').SetDisabled(disable);
+                    // ---
                 }
                 if (options.plugins) {
                     app.getController('Common.Controllers.Plugins').getView('Common.Views.Plugins').SetDisabled(disable, options.reviewMode, options.fillFormMode);
@@ -1308,6 +1312,7 @@ define([
                     leftmenuController          = application.getController('LeftMenu'),
                     chatController              = application.getController('Common.Controllers.Chat'),
                     pluginsController           = application.getController('Common.Controllers.Plugins'),
+                    biyueNavigationController   = application.getController('BiyueNavigation'), /* chongxishen */
                     navigationController        = application.getController('Navigation');
 
 
@@ -1315,6 +1320,7 @@ define([
                 leftmenuController.createDelayedElements().setApi(me.api);
 
                 navigationController.setMode(me.appOptions).setApi(me.api);
+                biyueNavigationController.setMode(me.appOptions).setApi(me.api); /* chongxishen */
 
                 chatController.setApi(this.api).setMode(this.appOptions);
                 application.getController('Common.Controllers.ExternalDiagramEditor').setApi(this.api).loadConfig({config:this.editorConfig, customization: this.editorConfig.customization});
@@ -2356,6 +2362,10 @@ define([
             },
 
             onServerVersion: function(buildVersion) {
+                if (true) { // chongxishen
+                    console.log("ignore version")
+                    return false;
+                }
                 if (this.changeServerVersion) return true;
 
                 const cur_version = this.getApplication().getController('LeftMenu').leftMenu.getMenu('about').txtVersionNum;

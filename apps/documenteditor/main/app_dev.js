@@ -139,6 +139,7 @@ require([
             'Links',
             'FormsTab',
             'Navigation',
+            'BiyueNavigation', /* chongxishen */
             'PageThumbnails',
             'RightMenu',
             'LeftMenu',
@@ -176,6 +177,7 @@ require([
                 'documenteditor/main/app/controller/Links',
                 'documenteditor/main/app/controller/FormsTab',
                 'documenteditor/main/app/controller/Navigation',
+                'documenteditor/main/app/controller/BiyueNavigation', /* chongxishen */
                 'documenteditor/main/app/controller/PageThumbnails',
                 'documenteditor/main/app/controller/Statusbar',
                 'documenteditor/main/app/controller/RightMenu',

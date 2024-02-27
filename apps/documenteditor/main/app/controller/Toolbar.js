@@ -357,6 +357,17 @@ define([
             toolbar.btnInsertShape.menu.on('hide:after',                _.bind(this.onInsertShapeHide, this));
             toolbar.btnDropCap.menu.on('item:click',                    _.bind(this.onDropCapSelect, this));
             toolbar.btnContentControls.menu.on('item:click',            _.bind(this.onControlsSelect, this));
+
+            // chongxishen
+            toolbar.btnContentCtrlInfo.on('click',                      _.bind(this.onBtnContentCtrlInfoClick, this));
+            toolbar.btnAddScoreTable.on('click',                        _.bind(this.onBtnAddScoreTableClick, this));
+            toolbar.btnAddEvaluateTable.on('click',                     _.bind(this.onBtnAddEvaluateTableClick, this));
+            toolbar.btnExportQuesHtml.on('click',                       _.bind(this.onBtnExportQuesHtmlClick, this));
+            toolbar.btnExportQuesJson.on('click',                       _.bind(this.onBtnExportQuesJsonClick, this));
+            toolbar.btnExportHighDpiImg.on('click',                     _.bind(this.onBtnExportHighDpiImgClick, this));
+            toolbar.btnUploadQues.on('click',                           _.bind(this.onBtnUploadQuesClick, this));
+            // ---
+
             toolbar.mnuDropCapAdvanced.on('click',                      _.bind(this.onDropCapAdvancedClick, this, false));
             toolbar.btnColumns.menu.on('item:click',                    _.bind(this.onColumnsSelect, this));
             toolbar.btnPageOrient.menu.on('item:click',                 _.bind(this.onPageOrientSelect, this));
@@ -2428,6 +2439,658 @@ define([
             Common.component.Analytics.trackEvent('ToolBar', 'Page Number');
         },
 
+        // chongxishen
+        onBtnContentCtrlInfoClick: function(btn) {
+            console.log("onBtnContentCtrlInfoClick");
+            // TODO:
+            if (this.api) {
+                // var rects = this.api.asc_GetContentControlBoundingRects();
+                // if (rects) {
+                //     // [{X:number, Y:number, W:number, H:number, Page:number, Transform:object}]
+                //     for (var item = 0; item < rects.length; item++) {
+                //         var rect = rects[item];
+                //         console.log("{ (" + rect.X + ", " + rect.Y + " -- " + rect.W + ", " + rect.H + ") P: " + rect.Page + " }");
+                //     }
+                // }
+
+                // TODO: add rect shape
+                // this.addRectShape();
+
+                // add table
+                // this.addScoreTable();
+
+                this.api.asc_AutoLayout();
+            }
+
+            Common.NotificationCenter.trigger('edit:complete', this.toolbar);
+            Common.component.Analytics.trackEvent('ToolBar', 'Content Controls Info');
+        },
+
+        onBtnAddScoreTableClick: function(btn) {
+            if (this.api) {
+                this.api.asc_AddScoreTable(this.biyue);
+                this.api.sync_OnDocBiyueContentControlUpdate(); // refresh
+            }
+            Common.NotificationCenter.trigger('edit:complete', this.toolbar);
+            Common.component.Analytics.trackEvent('ToolBar', 'Add Score');
+        },
+
+        onBtnAddEvaluateTableClick: function(btn) {
+            if (this.api) {
+                this.api.asc_AddEvaluateTable(this.biyue);
+            }
+            Common.NotificationCenter.trigger('edit:complete', this.toolbar);
+            Common.component.Analytics.trackEvent('ToolBar', 'Add Evaluate');
+        },
+
+        onBtnExportQuesHtmlClick: function(btn) {
+            if (this.api) {
+                var options = new Asc.asc_CDownloadOptions(Asc.c_oAscFileType.HTML, false);
+                options.asc_setBlockOnly(true);
+                this.api.asc_DownloadAs(options);
+            }
+
+            Common.NotificationCenter.trigger('edit:complete', this.toolbar);
+            Common.component.Analytics.trackEvent('ToolBar', 'Export Ques Html');
+        },
+
+        onBtnExportQuesJsonClick: function(btn) {
+            if (this.api) {
+                const obj = this.api.asc_GetQuestionAskInfo();
+                if (obj.done) {
+                    var ques_list = obj.ques_list;
+                    var blob = new Blob([JSON.stringify(ques_list)], {type: 'application/json'});
+                    var url = window.URL.createObjectURL(blob);
+                    var link = document.createElement('a');
+                    link.href = url;
+                    link.setAttribute('download', "exam.json");
+                    link.click();
+                }
+            }
+
+            Common.NotificationCenter.trigger('edit:complete', this.toolbar);
+            Common.component.Analytics.trackEvent('ToolBar', 'Export Ques Json');
+        },
+
+        onBtnExportHighDpiImgClick: function(btn) {
+            if (this.api) {
+                var options = new Asc.asc_CDownloadOptions(Asc.c_oAscFileType.PNG, false);
+                options.asc_setHightDpi(true);
+                this.api.asc_DownloadAs(options);
+            }
+
+            Common.NotificationCenter.trigger('edit:complete', this.toolbar);
+            Common.component.Analytics.trackEvent('ToolBar', 'Export High DPI');
+        },
+
+        onBtnUploadQuesClick: function(btn) {
+            this.uploadQues();
+            Common.NotificationCenter.trigger('edit:complete', this.toolbar);
+            Common.component.Analytics.trackEvent('ToolBar', 'Upload Ques');
+        },
+
+        addScoreTable: function() {
+            if (this.api) {
+                this.api.asc_AddScoreTable(this.biyue);
+            }
+        },
+
+        loadBiyueImages: function() {
+            if (this.api) {
+                const imgBase = 'http://192.168.63.128/web-apps/js/imgs/';
+                const selfImgUrl = imgBase + 'biyue_xiaoyue.png';
+                const teacherImgUrl = imgBase + 'biyue_xiaotao.png';
+                const flowerImgUrl = imgBase + 'biyue_flower.png';
+                const urls = [selfImgUrl, teacherImgUrl, flowerImgUrl];
+                this.biyue = { biyue: true, imgs: [] }; /* 设置为true sdk会去回调保存图片 */
+                this.api.AddImageUrl(urls, undefined, undefined, this.biyue);
+            }
+        },
+
+        addRectShape: function() {
+            if (this.api) {
+                var info = {X: 10, Y: 20, W: 100, H: 15, Page: 0, Color: { r: 120, g: 120, b: 0 }};
+                this.api.asc_AddRectShape(info);
+            }
+        },
+
+        uploadQues: function() {
+            if (!this.api) return;
+
+            const obj = this.api.asc_GetQuestionAskInfo();
+            if (!obj.done) return;
+
+            var ques_list = obj.ques_list;
+            if (!ques_list || ques_list.length < 1) return;
+
+            const me = this;
+            const host = 'https://edusys.xmdas-link.com'
+            const pageCount = me.api.asc_GetPageCount();
+            console.log("uploadQues: pageCount=" + pageCount);
+            
+            // http://api.dcx.com/#/home/project/inside/api/detail?groupID=315&childGroupID=323&grandSonGroupID=475&apiID=1798&projectName=%E7%AD%86%E6%9B%B0&projectID=35
+            // 3. 上传试卷切题信息
+            var fUploadQues = function (token, data) {
+                console.log("uploadQues: exam_id=" + data.exam_id + ", exam_no=" + data.exam_no);
+
+                /*
+                    for (var i = 0; i < ques_list.length; i++) {
+                        var quesItem = ques_list[i];
+
+                        var ques_no = '' + (i + 1);
+                        var ask_num = quesItem.ask_fields.length;
+                        var mark_method = "1";
+                        var ref_id = fGenRandRefId();
+
+                        var qi = {
+                            additional: false, content: quesItem.html, ques_no: ques_no,
+                            ask_num: ask_num, mark_method: mark_method, ques_type: 2, score: 4,
+                            ref_id: ref_id,
+                        };
+
+                        for (var k = 0; k < ask_num; k++) {
+                            var ask_no = '' + (k + 1);
+                            var askItem = quesItem.ask_fields[k];
+                            askItem.order = ask_no;
+
+                            qi[ask_no] = 
+                        }
+
+                        ques[ques_no] = qi;
+                    }
+                */
+
+                var ques = {
+                    "again_regional": [
+                    ],
+                    "check_regional": [
+                    ],
+                    "dpi": 96,
+                    "end_regional": [
+                    ],
+                    "exam_no": data.exam_no,
+                    "exam_type": "exercise",
+                    "fp_codes": [
+                    ],
+                    "ignore_region": [
+                    ],
+                    "partial_no_dot_regional": [
+                    ],
+                    "pass_regional": {
+                    },
+                    "questions": {
+                        "1": {
+                            "additional": false,
+                            "answer": "",
+                            "ask_num": ques_list[0].ask_fields.length,
+                            "content": ques_list[0].html,
+                            "correct_ask_region": [
+                            ],
+                            "grade_positions": [
+                            ],
+                            "itemId": 2,
+                            "mark_ask_region": {
+                                "1": [
+                                    {
+                                        "h": ques_list[0].ask_fields[0].h,
+                                        "order": "1",
+                                        "page": ques_list[0].ask_fields[0].page,
+                                        "v": "1.0",
+                                        "w": ques_list[0].ask_fields[0].w,
+                                        "x": ques_list[0].ask_fields[0].x,
+                                        "y": ques_list[0].ask_fields[0].y
+                                    }
+                                ],
+                                "2": [
+                                    {
+                                        "h": ques_list[0].ask_fields[1].h,
+                                        "order": "2",
+                                        "page": ques_list[0].ask_fields[1].page,
+                                        "v": "1.0",
+                                        "w": ques_list[0].ask_fields[1].w,
+                                        "x": ques_list[0].ask_fields[1].x,
+                                        "y": ques_list[0].ask_fields[1].y
+                                    }
+                                ]
+                            },
+                            "mark_method": "1",
+                            "ques_name": "",
+                            "ques_no": 1,
+                            "ques_type": 2,
+                            "question_ask": {
+                                "1": {
+                                    "order": "1",
+                                    "score": "1.0"
+                                },
+                                "2": {
+                                    "order": "2",
+                                    "score": "1.0"
+                                }
+                            },
+                            //"ref_id": "ad860938-40ee-4a25-a2cc-579c9d584610",
+                            "score": 2,
+                            "title_region": [
+                                {
+                                    "h": ques_list[0].fields[0].h,
+                                    "page": ques_list[0].fields[0].page,
+                                    "w": ques_list[0].fields[0].w,
+                                    "x": ques_list[0].fields[0].x,
+                                    "y": ques_list[0].fields[0].y
+                                }
+                            ],
+                            "write_ask_region": [
+                                {
+                                    "h": ques_list[0].ask_fields[0].h,
+                                    "order": "1",
+                                    "page": ques_list[0].ask_fields[0].page,
+                                    "v": "1.0",
+                                    "w": ques_list[0].ask_fields[0].w,
+                                    "x": ques_list[0].ask_fields[0].x,
+                                    "y": ques_list[0].ask_fields[0].y
+                                },
+                                {
+                                    "h": ques_list[0].ask_fields[1].h,
+                                    "order": "2",
+                                    "page": ques_list[0].ask_fields[1].page,
+                                    "v": "1.0",
+                                    "w": ques_list[0].ask_fields[1].w,
+                                    "x": ques_list[0].ask_fields[1].x,
+                                    "y": ques_list[0].ask_fields[1].y
+                                }
+                            ]
+                        },
+                        "2": {
+                            "additional": false,
+                            "answer": "",
+                            "ask_num": ques_list[1].ask_fields.length,
+                            "content": ques_list[1].html,
+                            "correct_ask_region": [
+                            ],
+                            "grade_positions": [
+                            ],
+                            "itemId": 3,
+                            "mark_ask_region": {
+                                "1": [
+                                    {
+                                        "h": ques_list[1].ask_fields[0].h,
+                                        "order": "1",
+                                        "page": ques_list[1].ask_fields[0].page,
+                                        "v": "1.0",
+                                        "w": ques_list[1].ask_fields[0].w,
+                                        "x": ques_list[1].ask_fields[0].x,
+                                        "y": ques_list[1].ask_fields[0].y
+                                    }
+                                ],
+                                "2": [
+                                    {
+                                        "h": ques_list[1].ask_fields[1].h,
+                                        "order": "2",
+                                        "page": ques_list[1].ask_fields[1].page,
+                                        "v": "1.0",
+                                        "w": ques_list[1].ask_fields[1].w,
+                                        "x": ques_list[1].ask_fields[1].x,
+                                        "y": ques_list[1].ask_fields[1].y
+                                    }
+                                ],
+                                "3": [
+                                    {
+                                        "h": ques_list[1].ask_fields[2].h,
+                                        "order": "3",
+                                        "page": ques_list[1].ask_fields[2].page,
+                                        "v": "1.0",
+                                        "w": ques_list[1].ask_fields[2].w,
+                                        "x": ques_list[1].ask_fields[2].x,
+                                        "y": ques_list[1].ask_fields[2].y
+                                    }
+                                ],
+                                "4": [
+                                    {
+                                        "h": ques_list[1].ask_fields[3].h,
+                                        "order": "4",
+                                        "page": ques_list[1].ask_fields[3].page,
+                                        "v": "1.0",
+                                        "w": ques_list[1].ask_fields[3].w,
+                                        "x": ques_list[1].ask_fields[3].x,
+                                        "y": ques_list[1].ask_fields[3].y
+                                    }
+                                ]
+                            },
+                            "mark_method": "1",
+                            "ques_name": "",
+                            "ques_no": 2,
+                            "ques_type": 2,
+                            "question_ask": {
+                                "1": {
+                                    "order": "1",
+                                    "score": "1.0"
+                                },
+                                "2": {
+                                    "order": "2",
+                                    "score": "1.0"
+                                },
+                                "3": {
+                                    "order": "3",
+                                    "score": "1.0"
+                                },
+                                "4": {
+                                    "order": "4",
+                                    "score": "1.0"
+                                }
+                            },
+                            //"ref_id": "f453e1d4-8b0a-4a64-ada1-84ae5f32a31a",
+                            "score": 4,
+                            "title_region": [
+                                {
+                                    "h": ques_list[1].fields[0].h,
+                                    "page": ques_list[1].fields[0].page,
+                                    "w": ques_list[1].fields[0].w,
+                                    "x": ques_list[1].fields[0].x,
+                                    "y": ques_list[1].fields[0].y
+                                }
+                            ],
+                            "write_ask_region": [
+                                {
+                                    "h": ques_list[1].ask_fields[0].h,
+                                    "order": "1",
+                                    "page": ques_list[1].ask_fields[0].page,
+                                    "v": "1.0",
+                                    "w": ques_list[1].ask_fields[0].w,
+                                    "x": ques_list[1].ask_fields[0].x,
+                                    "y": ques_list[1].ask_fields[0].y
+                                },
+                                {
+                                    "h": ques_list[1].ask_fields[1].h,
+                                    "order": "2",
+                                    "page": ques_list[1].ask_fields[1].page,
+                                    "v": "1.0",
+                                    "w": ques_list[1].ask_fields[1].w,
+                                    "x": ques_list[1].ask_fields[1].x,
+                                    "y": ques_list[1].ask_fields[1].y
+                                },
+                                {
+                                    "h": ques_list[1].ask_fields[2].h,
+                                    "order": "3",
+                                    "page": ques_list[1].ask_fields[2].page,
+                                    "v": "1.0",
+                                    "w": ques_list[1].ask_fields[2].w,
+                                    "x": ques_list[1].ask_fields[2].x,
+                                    "y": ques_list[1].ask_fields[2].y
+                                },
+                                {
+                                    "h": ques_list[1].ask_fields[3].h,
+                                    "order": "4",
+                                    "page": ques_list[1].ask_fields[3].page,
+                                    "v": "1.0",
+                                    "w": ques_list[1].ask_fields[3].w,
+                                    "x": ques_list[1].ask_fields[3].x,
+                                    "y": ques_list[1].ask_fields[3].y
+                                }
+                            ]
+                        },
+                        "3": {
+                            "additional": false,
+                            "answer": "",
+                            "ask_num": 1,//ques_list[2].ask_fields.length,
+                            "content": ques_list[2].html,
+                            "correct_ask_region": [
+                            ],
+                            "grade_positions": [
+                            ],
+                            "itemId": 4,
+                            "mark_ask_region": {
+                                "1": [
+                                    {
+                                        "h": ques_list[2].fields[0].h,
+                                        "order": "1",
+                                        "page": ques_list[2].fields[0].page,
+                                        "v": "4.0",
+                                        "w": ques_list[2].fields[0].w,
+                                        "x": ques_list[2].fields[0].x,
+                                        "y": ques_list[2].fields[0].y
+                                    }
+                                ]
+                            },
+                            "mark_method": "1",
+                            "ques_name": "",
+                            "ques_no": 3,
+                            "ques_type": 3,
+                            //"ref_id": "46a3ff57-e35e-473a-af7a-5dfc8574dca1",
+                            "score": 4,
+                            "title_region": [
+                                {
+                                    "h": ques_list[2].fields[0].h,
+                                    "page": ques_list[2].fields[0].page,
+                                    "w": ques_list[2].fields[0].w,
+                                    "x": ques_list[2].fields[0].x,
+                                    "y": ques_list[2].fields[0].y
+                                }
+                            ],
+                            "write_ask_region": [
+                                {
+                                    "h": ques_list[2].fields[0].h,
+                                    "order": "1",
+                                    "page": ques_list[2].fields[0].page,
+                                    "v": "4.0",
+                                    "w": ques_list[2].fields[0].w,
+                                    "x": ques_list[2].fields[0].x,
+                                    "y": ques_list[2].fields[0].y
+                                }
+                            ]
+                        }
+                    },
+                    "seal_line_regional": [
+                    ],
+                    "self_evaluation": [
+                    ],
+                    "stat_regional": [
+                    ],
+                    "teacher_evaluation": [
+                    ]
+                }
+
+
+                var fUploadQuesError = function (httpRequest, statusText, status) {
+                    console.log("fail: " + statusText);
+                    // TODO:
+                };
+
+                var fUploadQuesSuccess = function (httpRequest) {
+                    var res = JSON.parse(httpRequest.responseText);
+                    if (res) {
+                        if (res.code === 1) {
+                            // TODO:
+                            // {"code":1,"data":{"exam_id":57554,"ques_num":3},"message":"","ref":1703228665930376822}
+                            console.log("success exam_id=" + res.data.exam_id);
+                        } else {
+                            console.log("fail: code=" + res.code + ": " + res.message);
+                        }
+                    }
+                };
+                
+                AscCommon.asc_ajax({
+                    type:        'POST',
+                    url:         host + '/teacher/exam/questions/update',
+                    headers: 	 { 'X-Token': token },
+                    contentType: "application/json",
+                    dataType:	 'text',
+                    data:        JSON.stringify(ques),
+                    error:    	 fUploadQuesError,
+                    success:  	 fUploadQuesSuccess
+                });
+            };
+
+            // http://api.dcx.com/#/home/project/inside/api/detail?groupID=315&childGroupID=323&apiID=1794&projectName=%E7%AD%86%E6%9B%B0&projectID=35
+            // 2. 上传试卷图片
+            var fUploadPicRetry = function (token, data, pageId, filename, contentBytes, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', host + '/teacher/exam/page/upload', true);
+                // xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+                xhr.setRequestHeader('X-Token', token);
+                
+                var retryCount = 3;
+                function uploadWithRetry(formData, callback) {
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            var res = JSON.parse(xhr.responseText);
+                            if (res && res.code === 1) {
+                                if (callback) callback(true, res);
+                            } else {
+                                if (callback) callback(false, res);
+                            }
+                        } else {
+                            if (retryCount > 0) {
+                                retryCount--;
+                                uploadWithRetry(formData, callback); // retry
+                            } else {
+                                if (callback) callback(false, null);
+                            }
+                        }
+                    };
+                    xhr.send(formData);
+                }
+
+                var formData = new FormData();
+                var imageFile = new File([contentBytes], filename, { type: 'image/png' });
+                formData.append('exam_no', data.exam_no);
+                formData.append('pid', pageId);
+                formData.append('page_image', imageFile);
+                uploadWithRetry(formData, callback);
+            };
+
+            var fUploadPics = function (token, data) {
+                var options = new Asc.asc_CDownloadOptions(Asc.c_oAscFileType.PNG, false);
+                options.asc_setHightDpi(true);
+                // 回调获取300dpi的图片
+                options.cbProcessImageFile = function(url) {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);
+                    xhr.responseType = 'arraybuffer';
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            let done = false;
+                            let jsZlib = new AscCommon.ZLib();
+                            if (jsZlib.open(xhr.response)) {
+                                done = true;
+                                for (var k = 0; k < pageCount; k++) {
+                                    const pageId = k + 1;
+                                    const filename = "image" + pageId + ".png";
+                                    let contentBytes = jsZlib.getFile(filename);
+                                    if (contentBytes) {
+                                        fUploadPicRetry(token, data, pageId, filename, contentBytes, function(res, data) {
+                                            if (!res) {
+                                                done = false;
+                                                if (data) {
+                                                    console.log("fail: " + data.message);
+                                                } else {
+                                                    console.log("fail to upload, manybe network");
+                                                }
+                                            }
+                                        });
+
+                                        if (!done) break;
+                                    }
+                                }
+        
+                                jsZlib.close();
+                            }
+
+                            if (done) {
+                                fUploadQues(token, data);
+                            }
+                        } else {
+                            // TODO: handle error
+                            console.log("fail to download file");
+                        }
+                    };
+                    xhr.send();
+                };
+                me.api.asc_DownloadAs(options);
+            }
+
+
+            // http://api.dcx.com/#/home/project/inside/api/detail?groupID=315&childGroupID=323&grandSonGroupID=475&apiID=1793&projectName=%E7%AD%86%E6%9B%B0&projectID=35
+            // 1. 添加试卷 - 从题库中导入
+            var fImportQues = function (token) {
+                /*
+                * exam_title=%E5%9B%9B%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C%E6%95%B0%E5%AD%A6%E6%9C%9F%E4%B8%AD%E7%BB%83%E4%B9%A0%20&
+                subject_code=math&subject_value=19&grade_code=603100&page_num=1&ques_num=3&exam_score=10&
+                ref_id=2fb58eaa-df72-4787-b7d2-266a6bfb09aa&print_paper_type=a4&paper_num=0&exam_begin=0&
+                exam_end=0&is_update=&exam_type=exercise&scope_id=15&light_code=0
+                */
+                console.log("importQues: " + token);
+
+                var fImportError = function (httpRequest, statusText, status) {
+                    console.log("fail: " + statusText);
+                    // TODO:
+                };
+                var fImportSuccess = function (httpRequest) {
+                    var res = JSON.parse(httpRequest.responseText);
+                    if (res) {
+                        if (res.code === 1) {
+                            fUploadPics(token, res.data);
+                        } else {
+                            console.log("fail: code=" + res.code + ": " + res.message);
+                        }
+                    }
+                };
+                
+                var ques = {
+                    exam_title: 		'四年级上册数学期中练习',
+                    subject_code: 		'math',
+                    subject_value: 		'19',
+                    grade_code: 		'654100100',
+                    page_num:			'' + pageCount,         //'1',
+                    ques_num:			'' + ques_list.length,  //'3',
+                    exam_score:			'10',
+                    // ref_id:				'2fb58eaa-df72-4787-b7d2-266a6bfb09bb',
+                    print_paper_type: 	'a4',
+                    // is_update:			'0',
+                    exam_type:			'exercise',
+                    scope_id:			'15',
+                    light_code:			'0'
+                };
+                AscCommon.asc_ajax({
+                    type:        'POST',
+                    url:         host + '/teacher/exam/import/question_bank',
+                    headers: 	 { 'X-Token': token },
+                    dataType:	 'text',
+                    data:        new URLSearchParams(ques).toString(),
+                    error:    	 fImportError,
+                    success:  	 fImportSuccess
+                });
+            };
+
+
+            // http://api.dcx.com/#/home/project/inside/api/detail?groupID=474&apiID=1150&projectName=%E7%AD%86%E6%9B%B0&projectID=35
+            // 0. 老师登录
+            var fLoginError = function (httpRequest, statusText, status) {
+                console.log("fail: " + statusText);
+                // TODO:
+            };
+            var fLoginSuccess = function (httpRequest) {
+                var res = JSON.parse(httpRequest.responseText);
+                if (res) {
+                    if (res.code === 1) {
+                        fImportQues(res.data.token);
+                    } else {
+                        console.log("fail: code=" + res.code + ": " + res.message);
+                    }
+                }
+            };
+
+            var account = { user: 'jiaoshi1', pass: '123456Aa' };
+            AscCommon.asc_ajax({
+                type:        'POST',
+                url:         host + '/auth/login/teacher',
+                dataType:	 'text',
+                data:        new URLSearchParams(account).toString(),
+                error:    	 fLoginError,
+                success:  	 fLoginSuccess
+            });
+        },
+        
+        // ---
+
         onBtnBlankPageClick: function(btn) {
             if (this.api)
                 this.api.asc_AddBlankPage();
@@ -3534,6 +4197,10 @@ define([
                         .onAppReady(config);
                 }
             });
+
+            // chongxishen
+            me.loadBiyueImages();
+            // ---
         },
 
         getView: function (name) {

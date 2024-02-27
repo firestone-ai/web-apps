@@ -20,6 +20,9 @@
         </div>
         <div id="id-form-settings" class="settings-panel">
         </div>
+
+        <div id="id-biyue-settings" class="settings-panel">
+        </div>
     </div>
     <div class="tool-menu-btns">
         <div class="ct-btn-category arrow-left"></div>
@@ -33,5 +36,7 @@
         <button id="id-right-menu-mail-merge" class="btn btn-category arrow-left hidden" data-hint="0" data-hint-direction="left" data-hint-offset="big" content-target="id-mail-merge-settings"><i class="icon toolbar__icon btn-mailmerge">&nbsp;</i></button>
         <button id="id-right-menu-signature" class="btn btn-category arrow-left hidden" data-hint="0" data-hint-direction="left" data-hint-offset="big" content-target="id-signature-settings"><i class="icon toolbar__icon btn-menu-signature">&nbsp;</i></button>
         <button id="id-right-menu-form" class="btn btn-category arrow-left hidden" data-hint="0" data-hint-direction="left" data-hint-offset="big" content-target="id-form-settings"><i class="icon toolbar__icon btn-field">&nbsp;</i></button>
+
+        <button id="id-right-menu-biyue" class="btn btn-category arrow-left" data-hint="0" data-hint-direction="left" data-hint-offset="big" content-target="id-biyue-settings"><i class="icon toolbar__icon btn-biyue">&nbsp;</i></button>
     </div>
 </div>

@@ -179,7 +179,7 @@ define([
                     '<% } else if (isEmptyItem) { %>',
                         '<div class="name empty">' + options.emptyItemText + '</div>',
                     '<% } else { %>',
-                        '<div class="name"><%= Common.Utils.String.htmlEncode(name) %></div>',
+                        '<div class="name" draggable="true"><%= Common.Utils.String.htmlEncode(name) %></div>',
                     '<% } %>',
                     '</div>'
                 ].join('')) : _.template([
@@ -192,7 +192,7 @@ define([
                     '<% } else if (isEmptyItem) { %>',
                         '<div class="name empty">' + options.emptyItemText + '</div>',
                     '<% } else { %>',
-                        '<div class="name"><%= Common.Utils.String.htmlEncode(name) %></div>',
+                        '<div class="name" draggable="true"><%= Common.Utils.String.htmlEncode(name) %></div>',
                     '<% } %>',
                     '</div>'
                 ].join('')));

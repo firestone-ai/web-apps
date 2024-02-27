@@ -117,7 +117,8 @@ var utils = new(function() {
             Pivot      : 10,
             Cell       : 11,
             Slicer     : 12,
-            Form       : 13
+            Form       : 13,
+            Biyue      : 14
         },
         importTextType = {
             DRM: 0,

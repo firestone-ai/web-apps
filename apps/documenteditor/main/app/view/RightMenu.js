@@ -58,6 +58,7 @@ define([
     'documenteditor/main/app/view/TextArtSettings',
     'documenteditor/main/app/view/SignatureSettings',
     'documenteditor/main/app/view/FormSettings',
+    'documenteditor/main/app/view/BiyueSettings',
     'common/main/lib/component/Scroller'
 ], function (menuTemplate, $, _, Backbone) {
     'use strict';
@@ -139,6 +140,17 @@ define([
                 toggleGroup: 'tabpanelbtnsGroup',
                 allowMouseEventsOnDisabled: true
             });
+            // chongxishen
+            this.btnBiyue = new Common.UI.Button({
+                hint: this.txtBiyueSettings,
+                asctype: Common.Utils.documentSettingsType.Biyue,
+                enableToggle: true,
+                disabled: false,
+                iconCls: 'btn-biyue',
+                toggleGroup: 'tabpanelbtnsGroup',
+                allowMouseEventsOnDisabled: true
+            });
+            // ---
 
             this._settings = [];
             this._settings[Common.Utils.documentSettingsType.Paragraph]   = {panel: "id-paragraph-settings",  btn: this.btnText};
@@ -148,6 +160,9 @@ define([
             this._settings[Common.Utils.documentSettingsType.Shape]       = {panel: "id-shape-settings",      btn: this.btnShape};
             this._settings[Common.Utils.documentSettingsType.Chart]       = {panel: "id-chart-settings",      btn: this.btnChart};
             this._settings[Common.Utils.documentSettingsType.TextArt]     = {panel: "id-textart-settings",    btn: this.btnTextArt};
+            // chongxishen
+            this._settings[Common.Utils.documentSettingsType.Biyue]       = {panel: "id-biyue-settings",      btn: this.btnBiyue};
+            // ---
 
             return this;
         },
@@ -171,6 +186,9 @@ define([
             this.btnChart.setElement($markup.findById('#id-right-menu-chart'), false);         this.btnChart.render();
             this.btnShape.setElement($markup.findById('#id-right-menu-shape'), false);         this.btnShape.render();
             this.btnTextArt.setElement($markup.findById('#id-right-menu-textart'), false);     this.btnTextArt.render();
+            // chongxishen
+            this.btnBiyue.setElement($markup.findById('#id-right-menu-biyue'), false);         this.btnBiyue.render();
+            // ---
 
             this.btnText.on('click',            this.onBtnMenuClick.bind(this));
             this.btnTable.on('click',           this.onBtnMenuClick.bind(this));
@@ -179,6 +197,9 @@ define([
             this.btnChart.on('click',           this.onBtnMenuClick.bind(this));
             this.btnShape.on('click',           this.onBtnMenuClick.bind(this));
             this.btnTextArt.on('click',         this.onBtnMenuClick.bind(this));
+            // chongxishen
+            this.btnBiyue.on('click',           this.onBtnMenuClick.bind(this));
+            // ---
 
             this.paragraphSettings = new DE.Views.ParagraphSettings();
             this.headerSettings = new DE.Views.HeaderFooterSettings();
@@ -187,6 +208,9 @@ define([
             this.tableSettings = new DE.Views.TableSettings();
             this.shapeSettings = new DE.Views.ShapeSettings();
             this.textartSettings = new DE.Views.TextArtSettings();
+            // chongxishen
+            this.biyueSettings = new DE.Views.BiyueSettings();
+            // ---
 
             if (mode && mode.canCoAuthoring && mode.canUseMailMerge) {
                 this.btnMailMerge = new Common.UI.Button({
@@ -268,6 +292,9 @@ define([
             this.tableSettings.setApi(api).on('editcomplete', _fire_editcomplete).on('eyedropper', _.bind(_isEyedropperStart, this));
             this.shapeSettings.setApi(api).on('editcomplete', _fire_editcomplete).on('eyedropper', _.bind(_isEyedropperStart, this));
             this.textartSettings.setApi(api).on('editcomplete', _fire_editcomplete).on('eyedropper', _.bind(_isEyedropperStart, this));
+            // chongxishen
+            this.biyueSettings.setApi(api).on('editcomplete', _fire_editcomplete).on('eyedropper', _.bind(_isEyedropperStart, this));
+            // --
             if (this.mergeSettings) this.mergeSettings.setApi(api).on('editcomplete', _fire_editcomplete);
             if (this.signatureSettings) this.signatureSettings.setApi(api).on('editcomplete', _fire_editcomplete);
             if (this.formSettings) this.formSettings.setApi(api).on('editcomplete', _fire_editcomplete);
@@ -366,6 +393,7 @@ define([
         txtChartSettings:           'Chart Settings',
         txtMailMergeSettings:       'Mail Merge Settings',
         txtSignatureSettings:       'Signature Settings',
-        txtFormSettings:            'Form Settings'
+        txtFormSettings:            'Form Settings',
+        txtBiyueSettings:           'Biyue设置'
     }, DE.Views.RightMenu || {}));
 });

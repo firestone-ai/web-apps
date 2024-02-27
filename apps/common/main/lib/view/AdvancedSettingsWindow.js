@@ -103,10 +103,18 @@ define([
             var cnt_panel = $window.find('.content-panel'),
                 menu_panel = $window.find('.menu-panel');
             cnt_panel.width(this.contentWidth);
-            $window.width(((menu_panel.length>0) ? menu_panel.width() : 0) + cnt_panel.outerWidth() + 2);
+            // chongxishen
+            if (me.toggleGroup === 'biyue-control-adv-settings-group') {                
+                if (this.btnsCategory.length < 2) {
+                    menu_panel.width(0);
+                    this.btnsCategory[0].setVisible(false);
+                }
+            }
+            // ---
+            $window.width(((menu_panel.length > 0) ? menu_panel.width() : 0) + cnt_panel.outerWidth() + 2);
 
             this.content_panels = $window.find('.settings-panel');
-            if (this.btnsCategory.length>0)
+            if (this.btnsCategory.length > 0)
                 this.btnsCategory[0].toggle(true, true);
         },
 

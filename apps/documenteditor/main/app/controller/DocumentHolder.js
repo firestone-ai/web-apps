@@ -1962,14 +1962,26 @@ define([
             var props = this.api.asc_GetContentControlProperties();
             if (props) {
                 if (item.value == 'settings') {
-                    (new DE.Views.ControlSettingsDialog({
+                    // FIXME: chongxishen
+                    // (new DE.Views.ControlSettingsDialog({
+                    //     props: props,
+                    //     api: me.api,
+                    //     handler: function (result, value) {
+                    //         if (result == 'ok') {
+                    //             me.api.asc_SetContentControlProperties(value, props.get_InternalId());
+                    //         }
+                    //         me.editComplete();
+                    //     }
+                    // })).show();
+
+
+                    (new DE.Views.BiyueControlSettingsDialog({
                         props: props,
                         api: me.api,
                         handler: function (result, value) {
                             if (result == 'ok') {
                                 me.api.asc_SetContentControlProperties(value, props.get_InternalId());
                             }
-
                             me.editComplete();
                         }
                     })).show();

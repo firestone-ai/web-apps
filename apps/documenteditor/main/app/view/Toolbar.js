@@ -971,6 +971,92 @@ define([
                     this.toolbarControls.push(this.btnContentControls);
                     // this.paragraphControls.push(this.btnContentControls);
 
+                    // +++ chongxishen
+                    this.btnContentCtrlInfo = new Common.UI.Button({
+                        id: 'id-toolbar-btn-contentctrlinfo',
+                        cls: 'btn-toolbar x-huge icon-top',
+                        iconCls: 'toolbar__icon btn-contentctrlinfo',
+                        lock: [_set.paragraphLock, _set.headerLock, _set.previewReviewMode, _set.viewFormMode, _set.lostConnect, _set.disableOnStart, _set.docLockView, _set.docLockForms, _set.docLockComments, _set.inSmartart, _set.inSmartartInternal],
+                        caption: me.capContentCtrlInfo,
+                        dataHint: '1',
+                        dataHintDirection: 'bottom',
+                        dataHintOffset: 'small'
+                    });
+                    this.toolbarControls.push(this.btnContentCtrlInfo);
+
+                    this.btnAddScoreTable = new Common.UI.Button({
+                        id: 'id-toolbar-btn-addscoretable',
+                        cls: 'btn-toolbar x-huge icon-top',
+                        iconCls: 'toolbar__icon btn-addscoretable',
+                        lock: [_set.paragraphLock, _set.headerLock, _set.previewReviewMode, _set.viewFormMode, _set.lostConnect, _set.disableOnStart, _set.docLockView, _set.docLockForms, _set.docLockComments, _set.inSmartart, _set.inSmartartInternal],
+                        caption: me.capAddScoreTable,
+                        dataHint: '1',
+                        dataHintDirection: 'bottom',
+                        dataHintOffset: 'small'
+                    });
+                    this.toolbarControls.push(this.btnAddScoreTable);
+
+                    this.btnAddEvaluateTable = new Common.UI.Button({
+                        id: 'id-toolbar-btn-addevaluatetable',
+                        cls: 'btn-toolbar x-huge icon-top',
+                        iconCls: 'toolbar__icon btn-addevaluatetable',
+                        lock: [_set.paragraphLock, _set.headerLock, _set.previewReviewMode, _set.viewFormMode, _set.lostConnect, _set.disableOnStart, _set.docLockView, _set.docLockForms, _set.docLockComments, _set.inSmartart, _set.inSmartartInternal],
+                        caption: me.capAddEvaluateTable,
+                        dataHint: '1',
+                        dataHintDirection: 'bottom',
+                        dataHintOffset: 'small'
+                    });
+                    this.toolbarControls.push(this.btnAddEvaluateTable);
+
+                    this.btnExportQuesHtml = new Common.UI.Button({
+                        id: 'id-toolbar-btn-exportqueshtml',
+                        cls: 'btn-toolbar x-huge icon-top',
+                        iconCls: 'toolbar__icon btn-exportqueshtml',
+                        lock: [_set.paragraphLock, _set.headerLock, _set.previewReviewMode, _set.viewFormMode, _set.lostConnect, _set.disableOnStart, _set.docLockView, _set.docLockForms, _set.docLockComments, _set.inSmartart, _set.inSmartartInternal],
+                        caption: me.capExportQuesHtml,
+                        dataHint: '1',
+                        dataHintDirection: 'bottom',
+                        dataHintOffset: 'small'
+                    });
+                    this.toolbarControls.push(this.btnExportQuesHtml);
+
+                    this.btnExportQuesJson = new Common.UI.Button({
+                        id: 'id-toolbar-btn-exportquesjson',
+                        cls: 'btn-toolbar x-huge icon-top',
+                        iconCls: 'toolbar__icon btn-exportquesjson',
+                        lock: [_set.paragraphLock, _set.headerLock, _set.previewReviewMode, _set.viewFormMode, _set.lostConnect, _set.disableOnStart, _set.docLockView, _set.docLockForms, _set.docLockComments, _set.inSmartart, _set.inSmartartInternal],
+                        caption: me.capExportQuesJson,
+                        dataHint: '1',
+                        dataHintDirection: 'bottom',
+                        dataHintOffset: 'small'
+                    });
+                    this.toolbarControls.push(this.btnExportQuesJson);
+
+                    this.btnExportHighDpiImg = new Common.UI.Button({
+                        id: 'id-toolbar-btn-exporthighdpiimg',
+                        cls: 'btn-toolbar x-huge icon-top',
+                        iconCls: 'toolbar__icon btn-exporthighdpiimg',
+                        lock: [_set.paragraphLock, _set.headerLock, _set.previewReviewMode, _set.viewFormMode, _set.lostConnect, _set.disableOnStart, _set.docLockView, _set.docLockForms, _set.docLockComments, _set.inSmartart, _set.inSmartartInternal],
+                        caption: me.capExportHighDpiImg,
+                        dataHint: '1',
+                        dataHintDirection: 'bottom',
+                        dataHintOffset: 'small'
+                    });
+                    this.toolbarControls.push(this.btnExportHighDpiImg);
+
+                    this.btnUploadQues = new Common.UI.Button({
+                        id: 'id-toolbar-btn-uploadques',
+                        cls: 'btn-toolbar x-huge icon-top',
+                        iconCls: 'toolbar__icon btn-uploadques',
+                        lock: [_set.paragraphLock, _set.headerLock, _set.previewReviewMode, _set.viewFormMode, _set.lostConnect, _set.disableOnStart, _set.docLockView, _set.docLockForms, _set.docLockComments, _set.inSmartart, _set.inSmartartInternal],
+                        caption: me.capUploadQues,
+                        dataHint: '1',
+                        dataHintDirection: 'bottom',
+                        dataHintOffset: 'small'
+                    });
+                    this.toolbarControls.push(this.btnUploadQues);
+                    // ---
+
                     this.btnColumns = new Common.UI.Button({
                         id: 'tlbtn-columns',
                         cls: 'btn-toolbar x-huge icon-top',
@@ -1772,6 +1858,15 @@ define([
                 _injectComponent('#slot-btn-instextart', this.btnInsertTextArt);
                 _injectComponent('#slot-btn-dropcap', this.btnDropCap);
                 _injectComponent('#slot-btn-controls', this.btnContentControls);
+                // chongxishen
+                _injectComponent('#slot-btn-contentctrlinfo', this.btnContentCtrlInfo);
+                _injectComponent('#slot-btn-addscoretable', this.btnAddScoreTable);
+                _injectComponent('#slot-btn-addevaluatetable', this.btnAddEvaluateTable);
+                _injectComponent('#slot-btn-exportqueshtml', this.btnExportQuesHtml);
+                _injectComponent('#slot-btn-exportquesjson', this.btnExportQuesJson);
+                _injectComponent('#slot-btn-exporthighdpiimg', this.btnExportHighDpiImg);
+                _injectComponent('#slot-btn-uploadques', this.btnUploadQues);
+                // ---
                 _injectComponent('#slot-btn-columns', this.btnColumns);
                 _injectComponent('#slot-btn-line-numbers', this.btnLineNumbers);
                 _injectComponent('#slot-btn-editheader', this.btnEditHeader);
@@ -2173,6 +2268,15 @@ define([
                 this.btnInsertSymbol.updateHint(this.tipInsertSymbol);
                 this.btnDropCap.updateHint(this.tipDropCap);
                 this.btnContentControls.updateHint(this.tipControls);
+                // chongxishen
+                this.btnContentCtrlInfo.updateHint(this.tipContentCtrlInfo);
+                this.btnAddScoreTable.updateHint(this.tipAddScoreTable);
+                this.btnAddEvaluateTable.updateHint(this.tipAddEvaluateTable);
+                this.btnExportQuesHtml.updateHint(this.tipExportQuesHtml);
+                this.btnExportQuesJson.updateHint(this.tipExportQuesJson);
+                this.btnExportHighDpiImg.updateHint(this.tipExportHighDpiImg);
+                this.btnUploadQues.updateHint(this.tipUploadQues);
+                // ---
                 this.btnColumns.updateHint(this.tipColumns);
                 this.btnPageOrient.updateHint(this.tipPageOrient);
                 this.btnPageSize.updateHint(this.tipPageSize);
@@ -3269,6 +3373,22 @@ define([
             mniImageFromStorage: 'Image from Storage',
             capBtnBlankPage: 'Blank Page',
             tipBlankPage: 'Insert blank page',
+            // +++ chongxishen
+            capContentCtrlInfo : '控制块信息',
+            tipContentCtrlInfo: '控制块位置信息',
+            capAddScoreTable : '批分框',
+            tipAddScoreTable: '添加批分框',
+            capAddEvaluateTable : '红花栏',
+            tipAddEvaluateTable: '添加红花栏',
+            capExportQuesHtml : '导出HTML',
+            tipExportQuesHtml: '导出题目信息到Html',
+            capExportQuesJson : '导出Json',
+            tipExportQuesJson: '导出题目信息到Json',
+            capExportHighDpiImg : '导出3倍图',
+            tipExportHighDpiImg: '导出3倍图',
+            capUploadQues : '上传试卷',
+            tipUploadQues: '上传试卷',
+            // ---
             txtDistribHor: 'Distribute Horizontally',
             txtDistribVert: 'Distribute Vertically',
             txtPageAlign: 'Align to Page',

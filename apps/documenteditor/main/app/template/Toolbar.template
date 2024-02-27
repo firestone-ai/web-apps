@@ -132,6 +132,14 @@
                 <div class="separator long"></div>
                 <div class="group">
                     <span class="btn-slot text x-huge" id="slot-btn-controls"></span>
+
+                    <span class="btn-slot text x-huge" id="slot-btn-contentctrlinfo"></span>
+                    <span class="btn-slot text x-huge" id="slot-btn-addscoretable"></span>
+                    <span class="btn-slot text x-huge" id="slot-btn-addevaluatetable"></span>
+                    <span class="btn-slot text x-huge" id="slot-btn-exportqueshtml"></span>
+                    <span class="btn-slot text x-huge" id="slot-btn-exportquesjson"></span>
+                    <span class="btn-slot text x-huge" id="slot-btn-exporthighdpiimg"></span>
+                    <span class="btn-slot text x-huge" id="slot-btn-uploadques"></span>
                 </div>
             </section>
             <section class="panel" data-tab="layout">

@@ -1,0 +1,18 @@
+<table cols="1">
+    <tr>
+        <td class="padding-small">
+            <label class="header"><%= scope.textOptions %></label>
+        </td>
+    </tr>
+    <tr>
+        <td class="padding-small">
+            <div id="biyue-check-show-cc"></div>
+        </td>
+    </tr>
+    <tr>
+        <td class="padding-small">
+            <div class="separator horizontal"></div>
+        </td>
+    </tr>
+    <tr class="finish-cell"></tr>
+</table>

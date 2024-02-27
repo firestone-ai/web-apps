@@ -93,6 +93,9 @@ define([
             this._settings[Common.Utils.documentSettingsType.MailMerge] = {panelId: "id-mail-merge-settings", panel: rightMenu.mergeSettings,    btn: rightMenu.btnMailMerge,   hidden: 1, props: {}, locked: false};
             this._settings[Common.Utils.documentSettingsType.Signature] = {panelId: "id-signature-settings",  panel: rightMenu.signatureSettings, btn: rightMenu.btnSignature,  hidden: 1, props: {}, locked: false};
             this._settings[Common.Utils.documentSettingsType.Form] = {panelId: "id-form-settings",  panel: rightMenu.formSettings, btn: rightMenu.btnForm,  hidden: 1, props: {}, locked: false};
+            // chongxishen
+            this._settings[Common.Utils.documentSettingsType.Biyue] =     {panelId: "id-biyue-settings",      panel: rightMenu.biyueSettings,    btn: rightMenu.btnBiyue,       hidden: 1, locked: false};
+            // ---
         },
 
         setApi: function(api) {
@@ -166,6 +169,10 @@ define([
             }
             this._settings[Common.Utils.documentSettingsType.MailMerge].locked = false;
             this._settings[Common.Utils.documentSettingsType.Signature].locked = false;
+
+            // chongxishen
+            this._settings[Common.Utils.documentSettingsType.Biyue].hidden = 0;
+            // ---
 
             var isChart = false,
                 isShape = false,
@@ -467,6 +474,9 @@ define([
                 this.rightmenu.tableSettings.disableControls(disabled);
                 this.rightmenu.imageSettings.disableControls(disabled);
                 this.rightmenu.formSettings && this.rightmenu.formSettings.disableControls(disabled);
+                // chongxishen
+                this.rightmenu.biyueSettings && this.rightmenu.biyueSettings.disableControls(disabled);
+                // ---
                 if (!allowMerge && this.rightmenu.mergeSettings) {
                     this.rightmenu.mergeSettings.disableControls(disabled);
                     disabled && this.rightmenu.btnMailMerge.setDisabled(disabled);
@@ -487,6 +497,9 @@ define([
                     this.rightmenu.btnTextArt.setDisabled(disabled);
                     this.rightmenu.btnChart.setDisabled(disabled);
                     this.rightmenu.btnForm && this.rightmenu.btnForm.setDisabled(disabled);
+                    // chongxishen
+                    this.rightmenu.btnBiyue && this.rightmenu.btnBiyue.setDisabled(disabled);
+                    // ---
                 } else {
                     var selectedElements = this.api.getSelectedElements();
                     if (selectedElements.length > 0)

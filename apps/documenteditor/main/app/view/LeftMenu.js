@@ -53,7 +53,8 @@ define([
     'common/main/lib/view/About',
     'common/main/lib/view/SearchDialog',
     'documenteditor/main/app/view/FileMenu',
-    'documenteditor/main/app/view/Navigation'
+    'documenteditor/main/app/view/Navigation',
+    'documenteditor/main/app/view/BiyueNavigation'
 ], function (menuTemplate, $, _, Backbone) {
     'use strict';
 
@@ -177,6 +178,19 @@ define([
             this.btnThumbnails.hide();
             this.btnThumbnails.on('click', this.onBtnMenuClick.bind(this));
 
+            // chongxishen
+            this.btnBiyue = new Common.UI.Button({
+                action: 'menuBiyue',
+                el: $markup.elementById('#left-btn-biyue'),
+                hint: '树形结构',
+                disabled: true,
+                iconCls: 'btn-menu-biyue',
+                enableToggle: true,
+                toggleGroup: 'leftMenuGroup'
+            });
+            this.btnBiyue.on('click', this.onBtnMenuClick.bind(this));
+            // ---
+
             this.$el.html($markup);
 
             return this;
@@ -269,6 +283,16 @@ define([
             //     } else
             //         this.panelPlugins['hide']();
             // }
+
+            // chongxishen
+            if (this.panelBiyue) {
+                if (this.btnBiyue.pressed) {
+                    this.panelBiyue.show();
+                } else {
+                    this.panelBiyue.hide();
+                }
+            }
+            // ---
         },
 
         setOptionsPanel: function(name, panel) {
@@ -293,6 +317,11 @@ define([
             if (name == 'advancedsearch') {
                 this.panelSearch = panel.render('#left-panel-search');
             }
+            // chongxishen
+            else if (name == 'menuBiyue' && !this.panelBiyue) {
+                this.panelBiyue = panel.render('#left-panel-biyue');
+            }
+            // ---
         },
 
         /** coauthoring begin **/
@@ -345,6 +374,13 @@ define([
                     this.panelThumbnails['hide']();
                     this.btnThumbnails.toggle(false, true);
                 }
+
+                // chongxishen
+                if (this.panelBiyue) {
+                    this.panelBiyue['hide']();
+                    this.btnBiyue.toggle(false);
+                }
+                // ---
             }
         },
 
@@ -367,6 +403,9 @@ define([
             this.btnPlugins.setDisabled(false);
             this.btnNavigation.setDisabled(false);
             this.btnThumbnails.setDisabled(false);
+            // chongxishen
+            this.btnBiyue.setDisabled(false);
+            // ---
         },
 
         showMenu: function(menu, opts, suspendAfter) {
@@ -407,6 +446,15 @@ define([
                         !suspendAfter && this.fireEvent('search:aftershow', this);
                     }
                 }
+                // chongxishen
+                else if (menu == 'menuBiyue') {
+                    if (this.btnBiyue.isVisible() &&
+                        !this.btnBiyue.isDisabled() && !this.btnBiyue.pressed) {
+                        this.btnBiyue.toggle(true);
+                        this.onBtnMenuClick(this.btnBiyue);
+                    }
+                }
+                // ---
                 /** coauthoring end **/
             }
         },
