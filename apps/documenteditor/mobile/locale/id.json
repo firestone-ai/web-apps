@@ -188,6 +188,12 @@
       "textWarningRestoreVersion": "File saat ini akan disimpan dalam riwayat versi.",
       "titleWarningRestoreVersion": "Pulihkan versi ini?",
       "txtErrorLoadHistory": "Gagal memuat riwayat"
+    },
+    "Themes": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "Same as system",
+      "textTheme": "Theme"
     }
   },
   "ContextMenu": {
@@ -392,7 +398,17 @@
     "textType": "Ketik",
     "textWe": "Rab",
     "textWrap": "Wrap",
-    "textWrappingStyle": "Gaya Pembungkusan"
+    "textWrappingStyle": "Gaya Pembungkusan",
+    "textChooseAnItem": "Choose an item",
+    "textChooseAnOption": "Choose an option",
+    "textEnterYourOption": "Enter your option",
+    "textHorizontalText": "Horizontal Text",
+    "textPlaceholder": "Placeholder",
+    "textRotateTextDown": "Rotate Text Down",
+    "textRotateTextUp": "Rotate Text Up",
+    "textSave": "Save",
+    "textTextOrientation": "Text Orientation",
+    "textYourOption": "Your option"
   },
   "Error": {
     "convertationTimeoutText": "Waktu konversi habis.",
@@ -600,7 +616,11 @@
     "warnLicenseUsersExceeded": "Anda sudah mencapai batas user untuk %1 editor. Hubungi admin Anda untuk mempelajari lebih lanjut.",
     "warnNoLicense": "Anda sudah mencapai batas untuk koneksi bersamaan ke %1 editor. Dokumen ini akan dibuka untuk dilihat saja. Hubungi %1 tim sales untuk syarat personal upgrade.",
     "warnNoLicenseUsers": "Anda sudah mencapai batas user untuk %1 editor. Hubungi %1 tim sales untuk syarat personal upgrade.",
-    "warnProcessRightsChange": "Anda tidak memiliki izin edit file ini."
+    "warnProcessRightsChange": "Anda tidak memiliki izin edit file ini.",
+    "textCancel": "Cancel",
+    "textConvertForm": "Download file as PDF to save the form in the format ready for filling.",
+    "textDownloadPdf": "Download PDF",
+    "textSaveAsPdf": "Save as PDF"
   },
   "Settings": {
     "advDRMOptions": "File yang Diproteksi",
@@ -752,7 +772,19 @@
     "txtScheme6": "Himpunan",
     "txtScheme7": "Margin Sisa",
     "txtScheme8": "Alur",
-    "txtScheme9": "Cetakan"
+    "txtScheme9": "Cetakan",
+    "textAddToFavorites": "Add to Favorites",
+    "textClearAllFields": "Clear All Fields",
+    "textDark": "Dark",
+    "textExplanationChangeDirection": "Application will be restarted for RTL interface activation",
+    "textExport": "Export",
+    "textExportAs": "Export As",
+    "textLight": "Light",
+    "textRemoveFromFavorites": "Remove from Favorites",
+    "textRtlInterface": "RTL Interface",
+    "textSameAsSystem": "Same as system",
+    "textSubmit": "Submit",
+    "textTheme": "Theme"
   },
   "Toolbar": {
     "dlgLeaveMsgText": "Anda memiliki perubahan yang belum tersimpan. Klik 'Tetap di Halaman Ini' untuk menunggu simpan otomatis. Klik ‘Tinggalkan Halaman Ini’ untuk membatalkan semua perubahan yang belum disimpan.",

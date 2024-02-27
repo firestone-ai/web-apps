@@ -50,7 +50,7 @@ const config = {
       jquery: 'jQuery'
   },
 
-  devtool: env === 'production' ? false/*'source-map'*/ : 'source-map', // TODO: turn off debugger source map before release
+  devtool: env === 'production' ? 'source-map' : 'source-map', // TODO: turn off debugger source map before release
   optimization: {
     minimizer: [new TerserPlugin({
     })],
@@ -221,6 +221,7 @@ const config = {
       skeleton: {
           stylesheet: env === 'development' ? undefined : fs.readFileSync(`../../apps/common/mobile/resources/css/skeleton.css`),
           htmlscript: fs.readFileSync(`../../apps/common/mobile/utils/htmlutils.js`),
+          checkerscript: fs.readFileSync(`../../apps/common/checkExtendedPDF.js`),
       },
       system: {
           env: {

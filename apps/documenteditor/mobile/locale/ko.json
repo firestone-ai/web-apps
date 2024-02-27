@@ -188,6 +188,12 @@
       "textWarningRestoreVersion": "현재 파일은 버전 기록에 저장됩니다.",
       "titleWarningRestoreVersion": "이 버전을 복원하시겠습니까?",
       "txtErrorLoadHistory": "로드 이력 실패"
+    },
+    "Themes": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "Same as system",
+      "textTheme": "Theme"
     }
   },
   "ContextMenu": {
@@ -392,7 +398,17 @@
     "textType": "유형",
     "textWe": "수요일",
     "textWrap": "줄 바꾸기",
-    "textWrappingStyle": "배치 스타일"
+    "textWrappingStyle": "배치 스타일",
+    "textChooseAnItem": "Choose an item",
+    "textChooseAnOption": "Choose an option",
+    "textEnterYourOption": "Enter your option",
+    "textHorizontalText": "Horizontal Text",
+    "textPlaceholder": "Placeholder",
+    "textRotateTextDown": "Rotate Text Down",
+    "textRotateTextUp": "Rotate Text Up",
+    "textSave": "Save",
+    "textTextOrientation": "Text Orientation",
+    "textYourOption": "Your option"
   },
   "Error": {
     "convertationTimeoutText": "변환 시간을 초과했습니다.",
@@ -600,7 +616,11 @@
     "warnLicenseUsersExceeded": "편집자 사용자 한도인 %1명에 도달했습니다. 자세한 내용은 관리자에게 문의하십시오.",
     "warnNoLicense": "% 1 편집 연결 수 제한에 도달했습니다. 이 문서는 보기 모드로 열립니다. 개인적인 업그레이드 사항은 % 1 영업팀에 연락하십시오.",
     "warnNoLicenseUsers": "ONLYOFFICE 편집자의이 버전은 동시 사용자에게 일정한 제한이 있습니다. <br> 더 필요한 것이 있으면 현재 라이센스를 업그레이드하거나 상용 라이센스를 구입하십시오.",
-    "warnProcessRightsChange": "파일을 편집 할 권한이 없습니다."
+    "warnProcessRightsChange": "파일을 편집 할 권한이 없습니다.",
+    "textCancel": "Cancel",
+    "textConvertForm": "Download file as PDF to save the form in the format ready for filling.",
+    "textDownloadPdf": "Download PDF",
+    "textSaveAsPdf": "Save as PDF"
   },
   "Settings": {
     "advDRMOptions": "보호 된 파일",
@@ -752,7 +772,19 @@
     "txtScheme7": "같음",
     "txtScheme8": "플로우",
     "txtScheme9": "발견",
-    "textDarkTheme": "Dark Theme"
+    "textAddToFavorites": "Add to Favorites",
+    "textClearAllFields": "Clear All Fields",
+    "textDark": "Dark",
+    "textDarkTheme": "Dark Theme",
+    "textExplanationChangeDirection": "Application will be restarted for RTL interface activation",
+    "textExport": "Export",
+    "textExportAs": "Export As",
+    "textLight": "Light",
+    "textRemoveFromFavorites": "Remove from Favorites",
+    "textRtlInterface": "RTL Interface",
+    "textSameAsSystem": "Same as system",
+    "textSubmit": "Submit",
+    "textTheme": "Theme"
   },
   "Toolbar": {
     "dlgLeaveMsgText": "저장하지 않은 변경 사항이 있습니다. 자동 저장이 완료될 때까지 기다리려면 \"이 페이지에 머물기\"를 클릭하십시오. \"이 페이지에서 나가기\"를 클릭하면 저장되지 않은 모든 변경 사항이 삭제됩니다.",

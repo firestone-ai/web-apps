@@ -188,6 +188,12 @@
       "textWarningRestoreVersion": "A jelenlegi fájl elmentésre kerül a verzió előzményekben.",
       "titleWarningRestoreVersion": "Aktuális változat visszaállítása?",
       "txtErrorLoadHistory": "Az előzmények betöltése sikertelen"
+    },
+    "Themes": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "Same as system",
+      "textTheme": "Theme"
     }
   },
   "ContextMenu": {
@@ -256,6 +262,7 @@
     "textCentered": "Középre igazított",
     "textChangeShape": "Forma módosítása",
     "textChart": "Diagram",
+    "textChooseAnItem": "Válassz egy elemet",
     "textClassic": "Klasszikus",
     "textClose": "Bezár",
     "textColor": "Szín",
@@ -392,7 +399,16 @@
     "textType": "Típus",
     "textWe": "Sze",
     "textWrap": "Tördel",
-    "textWrappingStyle": "Tördelés stílus"
+    "textWrappingStyle": "Tördelés stílus",
+    "textChooseAnOption": "Choose an option",
+    "textEnterYourOption": "Enter your option",
+    "textHorizontalText": "Horizontal Text",
+    "textPlaceholder": "Placeholder",
+    "textRotateTextDown": "Rotate Text Down",
+    "textRotateTextUp": "Rotate Text Up",
+    "textSave": "Save",
+    "textTextOrientation": "Text Orientation",
+    "textYourOption": "Your option"
   },
   "Error": {
     "convertationTimeoutText": "A átalakítás időkorlátja lejárt.",
@@ -565,6 +581,7 @@
     },
     "textAnonymous": "Anonim",
     "textBuyNow": "Weboldal megnyitása",
+    "textCancel": "Mégse",
     "textClose": "Bezár",
     "textContactUs": "Kapcsolatba lépés az értékesítéssel",
     "textCustomLoader": "Sajnálom, de ön nem jogosult a bootloader módosítására. Kérjük, árajánlatért forduljon értékesítési osztályunkhoz.",
@@ -600,7 +617,10 @@
     "warnLicenseUsersExceeded": "Elérte a(z) %1 szerkesztőhöz tartozó felhasználó számának korlátját. További információért forduljon rendszergazdájához.",
     "warnNoLicense": "Ön elérte az egyidejű kapcsolódás határát a %1 szerkesztőhöz. Ez a dokumentum csak megtekintésre lesz megnyitva. Lépjen kapcsolatba a(z) %1 értékesítési csapattal a perszonális frissítés feltételéhez.",
     "warnNoLicenseUsers": "Elérte a(z) %1 szerkesztőhöz tartozó felhasználói korlátját. Vegye fel a kapcsolatot a(z) %1 értékesítési csapattal a személyes frissítési feltételekért.",
-    "warnProcessRightsChange": "Nincs jogosultsága a fájl szerkesztéséhez."
+    "warnProcessRightsChange": "Nincs jogosultsága a fájl szerkesztéséhez.",
+    "textConvertForm": "Download file as PDF to save the form in the format ready for filling.",
+    "textDownloadPdf": "Download PDF",
+    "textSaveAsPdf": "Save as PDF"
   },
   "Settings": {
     "advDRMOptions": "Védett fájl",
@@ -609,6 +629,7 @@
     "closeButtonText": "Fájl bezárása",
     "notcriticalErrorTitle": "Figyelmeztetés",
     "textAbout": "Névjegy",
+    "textAddToFavorites": "Add hozzá a kedvencekhez",
     "textApplication": "Alkalmazás",
     "textApplicationSettings": "Alkalmazás beállítások",
     "textAuthor": "Szerző",
@@ -628,6 +649,7 @@
     "textCommentsDisplay": "Hozzászólások megjelenítése",
     "textCreated": "Létrehozva",
     "textCustomSize": "Egyéni méret",
+    "textDarkTheme": "Sötét téma",
     "textDialogUnprotect": "Jelszó megadása a dokumentum védelmének feloldásához",
     "textDirection": "Irány",
     "textDisableAll": "Összes letiltása",
@@ -752,7 +774,17 @@
     "txtScheme7": "Méltányosság",
     "txtScheme8": "Folyam",
     "txtScheme9": "Öntöde",
-    "textDarkTheme": "Dark Theme"
+    "textClearAllFields": "Clear All Fields",
+    "textDark": "Dark",
+    "textExplanationChangeDirection": "Application will be restarted for RTL interface activation",
+    "textExport": "Export",
+    "textExportAs": "Export As",
+    "textLight": "Light",
+    "textRemoveFromFavorites": "Remove from Favorites",
+    "textRtlInterface": "RTL Interface",
+    "textSameAsSystem": "Same as system",
+    "textSubmit": "Submit",
+    "textTheme": "Theme"
   },
   "Toolbar": {
     "dlgLeaveMsgText": "Vannak el nem mentett módosításai. Kattintson a 'Maradjon ezen az oldalon' gombra az automatikus mentéshez. Kattintson a 'Hagyja el ezt az oldalt' gombra a mentetlen módosítások elvetéséhez.",

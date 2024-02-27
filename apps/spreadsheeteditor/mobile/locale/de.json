@@ -40,6 +40,12 @@
       "textStandartColors": "Standardfarben",
       "textThemeColors": "Farben des Themas"
     },
+    "Themes": {
+      "dark": "Dunkel",
+      "light": "Hell",
+      "system": "Wie im System",
+      "textTheme": "Thema"
+    },
     "VersionHistory": {
       "notcriticalErrorTitle": "Warnung",
       "textAnonymous": "Anonym",
@@ -60,6 +66,7 @@
     "errorInvalidLink": "Der Linkverweis ist nicht vorhanden. Bitte korrigieren oder löschen Sie den Link.",
     "menuAddComment": "Kommentar hinzufügen",
     "menuAddLink": "Link hinzufügen",
+    "menuAutofill": "Automatisches Ausfüllen",
     "menuCancel": "Abbrechen",
     "menuCell": "Zelle",
     "menuDelete": "Löschen",
@@ -385,7 +392,9 @@
     "dlgLeaveTitleText": "Sie schließen die App",
     "leaveButtonText": "Seite verlassen",
     "stayButtonText": "Auf dieser Seite bleiben",
-    "textCloseHistory": "Historie schließen"
+    "textCloseHistory": "Historie schließen",
+    "textEnterNewFileName": "Geben Sie einen neuen Dateinamen ein",
+    "textRenameFile": "Datei umbenennen"
   },
   "View": {
     "Add": {
@@ -549,6 +558,7 @@
       "textInsideVerticalBorder": "Innere vertikale Rahmenlinie",
       "textInteger": "Ganze Zahl",
       "textInternalDataRange": "Interner Datenbereich",
+      "textInvalidName": "Dieser Dateiname darf keines der folgenden Zeichen enthalten:",
       "textInvalidRange": "Ungültiger Zellenbereich",
       "textJustified": "Blocksatz",
       "textLabelOptions": "Beschriftungsoptionen",
@@ -672,6 +682,7 @@
       "textComments": "Kommentare",
       "textCreated": "Erstellt",
       "textCustomSize": "Benutzerdefinierte Größe",
+      "textDark": "Dunkel",
       "textDarkTheme": "Dunkelmodus",
       "textDelimeter": "Trennzeichen",
       "textDirection": "Richtung",
@@ -686,6 +697,7 @@
       "textEnableAllMacrosWithoutNotification": "Alle Makros ohne Benachrichtigung aktivieren",
       "textEncoding": "Codierung ",
       "textExample": "Beispiel",
+      "textExplanationChangeDirection": "Die Anwendung wird für die Aktivierung der RTL-Schnittstelle neu gestartet",
       "textFeedback": "Feedback und Support",
       "textFind": "Suche",
       "textFindAndReplace": "Suchen und ersetzen",
@@ -703,6 +715,7 @@
       "textLastModifiedBy": "Zuletzt geändert von",
       "textLeft": "Links",
       "textLeftToRight": "Links nach rechts",
+      "textLight": "Hell",
       "textLocation": "Standort",
       "textLookIn": "Suchen in",
       "textMacrosSettings": "Einstellungen von Makros",
@@ -726,6 +739,8 @@
       "textRestartApplication": "Bitte starten Sie die Anwendung neu, damit die Änderungen wirksam werden",
       "textRight": "Rechts",
       "textRightToLeft": "Von rechts nach links",
+      "textRtlInterface": "RTL-Schnittstelle",
+      "textSameAsSystem": "Wie im System",
       "textSearch": "Suche",
       "textSearchBy": "Suche",
       "textSearchIn": "Suchen in",
@@ -738,6 +753,7 @@
       "textSpreadsheetTitle": "Titel der Tabelle",
       "textSubject": "Betreff",
       "textTel": "Tel.",
+      "textTheme": "Thema",
       "textTitle": "Titel",
       "textTop": "Oben",
       "textUnitOfMeasurement": "Maßeinheit",
