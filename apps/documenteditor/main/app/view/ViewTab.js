@@ -385,7 +385,7 @@ define([
             textStatusBar: 'Status Bar',
             textAlwaysShowToolbar: 'Always show toolbar',
             textRulers: 'Rulers',
-            textDocGrid: "DocGrid",
+            textDocGrid: "Grids",
             textDarkDocument: 'Dark document',
             tipHeadings: 'Headings',
             tipFitToPage: 'Fit to page',

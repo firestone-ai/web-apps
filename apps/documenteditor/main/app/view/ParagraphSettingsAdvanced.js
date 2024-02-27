@@ -871,6 +871,8 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
                 }
 
                 this.chAddInterval.setValue((props.get_ContextualSpacing() !== null && props.get_ContextualSpacing() !== undefined) ? props.get_ContextualSpacing() : 'indeterminate', true);
+                
+                this.chSnapToGrid.setValue((props.get_SnapToGrid() !== null && props.get_SnapToGrid() !== undefined) ? props.get_SnapToGrid() : 'indeterminate', true);
 
                 if(this.CurSpecial === undefined) {
                     this.CurSpecial = (props.get_Ind().get_FirstLine() === 0) ? c_paragraphSpecial.NONE_SPECIAL : ((props.get_Ind().get_FirstLine() > 0) ? c_paragraphSpecial.FIRST_LINE : c_paragraphSpecial.HANGING);
@@ -887,8 +889,7 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
                 this.chOrphan.setValue((props.get_WidowControl() !== null && props.get_WidowControl() !== undefined) ? props.get_WidowControl() : 'indeterminate', true);
 
                 this.chLineNumbers.setValue((props.get_SuppressLineNumbers() !== null && props.get_SuppressLineNumbers() !== undefined) ? props.get_SuppressLineNumbers() : 'indeterminate', true);
-
-                this.chSnapToGrid.setValue((props.get_SnapToGrid() !== null && props.get_SnapToGrid() !== undefined) ? props.get_SnapToGrid() : 'indeterminate', true);
+              
 
                 this.Borders = new Asc.asc_CParagraphBorders(props.get_Borders());
 

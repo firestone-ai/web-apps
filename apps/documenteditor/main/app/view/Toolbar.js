@@ -1316,6 +1316,10 @@ define([
                                 {
                                     caption: this.textCustomLineNumbers,
                                     value: 5
+                                },
+                                {
+                                    caption: this.textCustomDocGrid,
+                                    value: 6
                                 }
                             ]
                         }),
@@ -3293,6 +3297,7 @@ define([
             textRestartEachSection: 'Restart Each Section',
             textSuppressForCurrentParagraph: 'Suppress for Current Paragraph',
             textCustomLineNumbers: 'Line Numbering Options',
+            textCustomDocGrid: 'Document Grid Options',
             tipLineNumbers: 'Show line numbers',
             tipChangeCase: 'Change case',
             mniSentenceCase: 'Sentence case.',
