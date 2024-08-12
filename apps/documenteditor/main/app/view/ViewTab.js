@@ -96,6 +96,13 @@ define([
                 '</div>' +
                 '<div class="elset"></div>' +
             '</div>' +
+            '<div class="separator long separator-docgrid"></div>' +
+            '<div class="group small">' +
+                '<div class="elset">' +
+                    '<span class="btn-slot text" id="slot-chk-docgrid"></span>' +
+                '</div>' +
+                '<div class="elset"></div>' +
+            '</div>' +
         '</section>';
 
         return {
@@ -124,6 +131,9 @@ define([
                 }, me));
                 me.chRulers.on('change', _.bind(function (checkbox, state) {
                     me.fireEvent('rulers:change', [me.chRulers, state === 'checked']);
+                }, me));
+                me.chDocGrid.on('change', _.bind(function (checkbox, state) {
+                    me.fireEvent('docgrid:change', [me.chDocGrid, state === 'checked']);
                 }, me));
                 me.chLeftMenu.on('change', _.bind(function (checkbox, state) {
                     me.fireEvent('leftmenu:hide', [me.chLeftMenu, state === 'checked']);
@@ -260,6 +270,16 @@ define([
                 });
                 this.lockedControls.push(this.chRulers);
 
+                this.chDocGrid = new Common.UI.CheckBox({
+                    lock: [_set.lostConnect, _set.disableOnStart],
+                    labelText: this.textDocGrid,
+                    value: !Common.Utils.InternalSettings.get("de-hidden-docgrid"),
+                    dataHint: '1',
+                    dataHintDirection: 'left',
+                    dataHintOffset: 'small'
+                });
+                this.lockedControls.push(this.chDocGrid);
+
                 Common.Utils.lockControls(_set.disableOnStart, true, {array: this.lockedControls});
                 Common.NotificationCenter.on('app:ready', this.onAppReady.bind(this));
             },
@@ -310,6 +330,7 @@ define([
                 this.chStatusbar.render($host.find('#slot-chk-statusbar'));
                 this.chToolbar.render($host.find('#slot-chk-toolbar'));
                 this.chRulers.render($host.find('#slot-chk-rulers'));
+                this.chDocGrid.render($host.find('#slot-chk-docgrid'));
                 this.chLeftMenu.render($host.find('#slot-chk-leftmenu'));
                 this.chRightMenu.render($host.find('#slot-chk-rightmenu'));
 
@@ -392,6 +413,7 @@ define([
             textStatusBar: 'Status Bar',
             textAlwaysShowToolbar: 'Always show toolbar',
             textRulers: 'Rulers',
+            textDocGrid: "Grids",
             textDarkDocument: 'Dark document',
             tipHeadings: 'Headings',
             tipFitToPage: 'Fit to page',

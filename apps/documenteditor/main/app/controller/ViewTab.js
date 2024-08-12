@@ -86,6 +86,7 @@ define([
                     'zoom:topage': _.bind(this.onBtnZoomTo, this, 'topage'),
                     'zoom:towidth': _.bind(this.onBtnZoomTo, this, 'towidth'),
                     'rulers:change': _.bind(this.onChangeRulers, this),
+                    'docgrid:change': _.bind(this.onChangeDocGrid, this),
                     'darkmode:change': _.bind(this.onChangeDarkMode, this)
                 },
                 'Toolbar': {
@@ -294,6 +295,14 @@ define([
             Common.Utils.InternalSettings.set("de-hidden-rulers", !checked);
             this.api.asc_SetViewRulers(checked);
             Common.NotificationCenter.trigger('layout:changed', 'rulers');
+            Common.NotificationCenter.trigger('edit:complete', this.view);
+        },
+
+        onChangeDocGrid: function (btn, checked) {
+            Common.localStorage.setBool('de-hidden-docgrid', !checked);
+            Common.Utils.InternalSettings.set("de-hidden-docgrid", !checked);
+            this.api.asc_SetViewDocGrid(checked);
+            Common.NotificationCenter.trigger('layout:changed', 'docgrid');
             Common.NotificationCenter.trigger('edit:complete', this.view);
         },
 

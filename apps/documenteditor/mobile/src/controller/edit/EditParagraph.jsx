@@ -116,6 +116,13 @@ class EditParagraphController extends Component {
         }
     }
 
+    onSnapToGrid (checked) {
+        const api = Common.EditorApi.get();
+        if (api) {
+            api.put_SnapToGridPrg(checked);
+        }
+    }
+
     onBreakBefore (checked) {
         const api = Common.EditorApi.get();
         if (api) {

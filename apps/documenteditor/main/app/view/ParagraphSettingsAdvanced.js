@@ -263,6 +263,11 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
                 labelText: this.strSomeParagraphSpace
             });
 
+            this.chSnapToGrid = new Common.UI.CheckBox({
+                el: $('#paragraphadv-checkbox-snap-to-grid'),
+                labelText: this.strSnapToGrid
+            });
+
             this.cmbSpecial = new Common.UI.ComboBox({
                 el: $('#paragraphadv-spin-special'),
                 cls: 'input-group-nr',
@@ -721,7 +726,7 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
         getFocusedComponents: function() {
             return this.btnsCategory.concat([
                 this.cmbTextAlignment, this.cmbOutlinelevel, this.numIndentsLeft, this.numIndentsRight, this.cmbSpecial, this.numSpecialBy,
-                this.numSpacingBefore, this.numSpacingAfter, this.cmbLineRule, this.numLineHeight, this.chAddInterval, // 0 tab
+                this.numSpacingBefore, this.numSpacingAfter, this.cmbLineRule, this.numLineHeight, this.chAddInterval, this.chSnapToGrid, // 0 tab
                 this.chBreakBefore, this.chKeepLines, this.chOrphan, this.chKeepNext, this.chLineNumbers, // 1 tab
                 this.cmbBorderSize, this.btnBorderColor]).concat(this._btnsBorderPosition).concat([this.btnBackColor,  // 2 tab
                 this.chStrike, this.chSubscript, this.chDoubleStrike, this.chSmallCaps, this.chSuperscript, this.chAllCaps, this.numSpacing, this.numPosition, // 3 tab
@@ -835,6 +840,9 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
             var spaceBetweenPrg = this.chAddInterval.getValue();
             this._changedProps.asc_putContextualSpacing(spaceBetweenPrg == 'checked');
 
+            var snapToGrid = this.chSnapToGrid.getValue();
+            this._changedProps.asc_putSnapToGrid(snapToGrid == 'checked');
+
             var horizontalAlign = this.cmbTextAlignment.getValue();
             this._changedProps.asc_putJc((horizontalAlign !== undefined && horizontalAlign !== null) ? horizontalAlign : c_paragraphTextAlignment.LEFT);
 
@@ -869,6 +877,8 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
                 }
 
                 this.chAddInterval.setValue((props.get_ContextualSpacing() !== null && props.get_ContextualSpacing() !== undefined) ? props.get_ContextualSpacing() : 'indeterminate', true);
+                
+                this.chSnapToGrid.setValue((props.get_SnapToGrid() !== null && props.get_SnapToGrid() !== undefined) ? props.get_SnapToGrid() : 'indeterminate', true);
 
                 if(this.CurSpecial === undefined) {
                     this.CurSpecial = (props.get_Ind().get_FirstLine() === 0) ? c_paragraphSpecial.NONE_SPECIAL : ((props.get_Ind().get_FirstLine() > 0) ? c_paragraphSpecial.FIRST_LINE : c_paragraphSpecial.HANGING);
@@ -885,6 +895,7 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
                 this.chOrphan.setValue((props.get_WidowControl() !== null && props.get_WidowControl() !== undefined) ? props.get_WidowControl() : 'indeterminate', true);
 
                 this.chLineNumbers.setValue((props.get_SuppressLineNumbers() !== null && props.get_SuppressLineNumbers() !== undefined) ? props.get_SuppressLineNumbers() : 'indeterminate', true);
+              
 
                 this.Borders = new Asc.asc_CParagraphBorders(props.get_Borders());
 
@@ -1555,6 +1566,7 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
         textAtLeast: 'At least',
         textExact: 'Exactly',
         strSomeParagraphSpace: 'Don\'t add interval between paragraphs of the same style',
+        strSnapToGrid: 'Snap to grid when document grid is defined',
         strIndentsSpecial: 'Special',
         textNoneSpecial: '(none)',
         textFirstLine: 'First line',
