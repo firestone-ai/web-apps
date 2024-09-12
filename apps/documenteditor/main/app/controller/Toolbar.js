@@ -34,8 +34,7 @@
  *
  *  Toolbar Controller
  *
- *  Created by Alexander Yuzhin on 1/15/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 1/15/14
  *
  */
 
@@ -2639,7 +2638,7 @@ define([
             menu.items[3].setDisabled(isAllDefailtNotModifaed);
             menu.items[4].setDisabled(isAllCustomDeleted);
 
-            var parentOffset = this.toolbar.$el.offset(),
+            var parentOffset = Common.Utils.getOffset(this.toolbar.$el),
                 top = e.clientY*Common.Utils.zoom();
             if ($('#header-container').is(":visible")) {
                 top -= $('#header-container').height()

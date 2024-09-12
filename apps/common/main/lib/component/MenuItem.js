@@ -35,8 +35,7 @@
  *  A base class for all menu items that require menu-related functionality such as click handling,
  *  sub-menus, icons, etc.
  *
- *  Created by Alexander Yuzhin on 1/27/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 1/27/14
  *
  */
 
@@ -205,7 +204,7 @@ define([
                         el.tooltip({
                             title       : me.options.hint,
                             placement   : me.options.hintAnchor||function(tip, element) {
-                                var pos = this.getPosition(),
+                                var pos = Common.Utils.getBoundingClientRect(element),
                                     actualWidth = tip.offsetWidth,
                                     actualHeight = tip.offsetHeight,
                                     innerWidth = Common.Utils.innerWidth(),

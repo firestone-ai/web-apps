@@ -34,8 +34,7 @@
  *
  *  Statusbar controller
  *
- *    Created by Maxim Kadushkin on 27 March 2014
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *    Created on 27 March 2014
  *
  */
 
@@ -543,8 +542,8 @@ define([
                 }
 
                 var tab = me.statusbar.tabbar.tabs[me.statusbar.tabbar.getActive()];
-                var top = me.statusbar.$el.position().top - 115,
-                    left = tab.$el.offset().left;
+                var top = Common.Utils.getPosition(me.statusbar.$el).top - 115,
+                    left = Common.Utils.getOffset(tab.$el).left;
 
                 var current = me.api.asc_getWorksheetName(me.api.asc_getActiveWorksheetIndex());
                 var win = (new SSE.Views.Statusbar.RenameDialog({

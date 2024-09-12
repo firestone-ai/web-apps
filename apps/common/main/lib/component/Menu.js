@@ -34,8 +34,7 @@
  *
  *  A menu object. This is the container to which you may add {@link Common.UI.MenuItem menu items}.
  *
- *  Created by Alexander Yuzhin on 1/28/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 1/28/14
  *
  */
 
@@ -640,7 +639,7 @@ define([
                 var menuRoot = this.menuRoot,
                     menuParent  = this.menuAlignEl || menuRoot.parent(),
                     m           = this.menuAlign.match(/^([a-z]+)-([a-z]+)/),
-                    offset      = menuParent.offset(),
+                    offset      = Common.Utils.getOffset(menuParent),
                     docW        = Common.Utils.innerWidth() - 10,
                     docH        = Common.Utils.innerHeight() - 10, // Yep, it's magic number
                     menuW       = menuRoot.outerWidth(),
@@ -1155,7 +1154,7 @@ define([
             var menuRoot = this.menuRoot,
                 menuParent  = this.menuAlignEl || menuRoot.parent(),
                 m           = this.menuAlign.match(/^([a-z]+)-([a-z]+)/),
-                offset      = menuParent.offset(),
+                offset      = Common.Utils.getOffset(menuParent),
                 docW        = Common.Utils.innerWidth(),
                 docH        = Common.Utils.innerHeight() - 10, // Yep, it's magic number
                 menuW       = menuRoot.outerWidth(),

@@ -34,8 +34,7 @@
  *
  *  Toolbar view
  *
- *  Created by Maxim.Kadushkin on 2/13/17
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 2/13/17
  *
  */
 if (Common === undefined)
@@ -1684,7 +1683,7 @@ define([
 
                                 menu.menuAlign = 'tl-tl';
                                 var menuWidth = columnCount * (itemMargin + _width),
-                                    buttonOffsetLeft = cmp.openButton.$el.offset().left;
+                                    buttonOffsetLeft = Common.Utils.getOffset(cmp.openButton.$el).left;
                                 // if (menuWidth>buttonOffsetLeft)
                                 //     menuWidth = Math.max(Math.floor(buttonOffsetLeft/(itemMargin + _width)), 2) * (itemMargin + _width);
                                 if (menuWidth>Common.Utils.innerWidth())
