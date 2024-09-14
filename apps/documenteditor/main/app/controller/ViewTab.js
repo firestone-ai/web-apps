@@ -316,6 +316,10 @@ define([
                 this.onContentThemeChangedToDark(Common.UI.Themes.isContentThemeDark());            
         },
 
+        onContentThemeChangedToDark: function (isdark) {
+            this.view && this.view.btnDarkDocument.toggle(isdark, true);
+        },
+
         onChangeDocGrid: function (btn, checked) {
             Common.localStorage.setBool('de-hidden-docgrid', !checked);
             Common.Utils.InternalSettings.set("de-hidden-docgrid", !checked);
