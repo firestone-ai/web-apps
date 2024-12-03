@@ -466,6 +466,12 @@ define([
             });
             this.chAllCaps.on('change', _.bind(this.onAllCapsChange, this));
 
+            this.chEmMark = new Common.UI.CheckBox({
+                el: $('#paragraphadv-checkbox-emmark'),
+                labelText: this.strEmMark
+            });
+            this.chEmMark.on('change', _.bind(this.onEmMarkChange, this));
+
             this.numSpacing = new Common.UI.MetricSpinner({
                 el: $('#paragraphadv-spin-spacing'),
                 step: .01,
@@ -724,7 +730,7 @@ define([
                 this.numSpacingBefore, this.numSpacingAfter, this.cmbLineRule, this.numLineHeight, this.chAddInterval, this.chSnapToGrid, // 0 tab
                 this.chBreakBefore, this.chKeepLines, this.chOrphan, this.chKeepNext, this.chLineNumbers, // 1 tab
                 this.cmbBorderSize, this.btnBorderColor]).concat(this._btnsBorderPosition).concat([this.btnBackColor,  // 2 tab
-                this.chStrike, this.chSubscript, this.chDoubleStrike, this.chSmallCaps, this.chSuperscript, this.chAllCaps, this.numSpacing, this.numPosition, // 3 tab
+                this.chStrike, this.chSubscript, this.chDoubleStrike, this.chSmallCaps, this.chSuperscript, this.chAllCaps, this.chEmMark, this.numSpacing, this.numPosition, // 3 tab
                 this.numDefaultTab, this.numTab, this.cmbAlign, this.cmbLeader, this.tabList, this.btnAddTab, this.btnRemoveTab, this.btnRemoveAll,// 4 tab
                 this.spnMarginTop, this.spnMarginLeft, this.spnMarginBottom, this.spnMarginRight // 5 tab
             ]).concat(this.getFooterButtons());
@@ -941,6 +947,7 @@ define([
                 this.chSuperscript.setValue((props.get_Superscript() !== null && props.get_Superscript() !== undefined) ? props.get_Superscript() : 'indeterminate', true);
                 this.chSmallCaps.setValue((props.get_SmallCaps() !== null && props.get_SmallCaps() !== undefined) ? props.get_SmallCaps() : 'indeterminate', true);
                 this.chAllCaps.setValue((props.get_AllCaps() !== null && props.get_AllCaps() !== undefined) ? props.get_AllCaps() : 'indeterminate', true);
+                this.chEmMark.setValue((props.get_Em() !== null && props.get_Em() !== undefined) ? props.get_Em() : 'indeterminate', true)
 
                 this.numSpacing.setValue((props.get_TextSpacing() !== null && props.get_TextSpacing() !== undefined) ? Common.Utils.Metric.fnRecalcFromMM(props.get_TextSpacing()) : '', true);
                 this.numPosition.setValue((props.get_Position() !== null && props.get_Position() !== undefined) ? Common.Utils.Metric.fnRecalcFromMM(props.get_Position()) : '', true);
@@ -1171,6 +1178,18 @@ define([
                 properties.put_SmallCaps(this.chSmallCaps.getValue()=='checked');
                 this.api.SetDrawImagePlaceParagraph('paragraphadv-font-img', properties);
             }
+        },
+
+        onEmMarkChange: function(field, newValue, oldValue, eOpts){
+            if (this._changedProps && this.checkGroup!=4) {
+                this._changedProps.put_Em(field.getValue()=='checked');
+            }            
+            
+            if (this.api && !this._noApply) {
+                var properties = (this._originalProps) ? this._originalProps : new Asc.asc_CParagraphProperty();
+                properties.put_Em(field.getValue()=='checked');
+                this.api.SetDrawImagePlaceParagraph('paragraphadv-font-img', properties);
+            }      
         },
 
         onBorderSizeSelect: function(combo, record) {
@@ -1516,6 +1535,7 @@ define([
         strSubscript: 'Subscript',
         strSmallCaps: 'Small caps',
         strAllCaps: 'All caps',
+        strEmMark: 'Em Mark',
         strOrphan: 'Orphan control',
         strKeepNext: 'Keep with next',
         strTabs: 'Tab',

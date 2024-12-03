@@ -23,7 +23,7 @@ apps/**/main/resources/**/iconshuge*.less
 apps/**/mobile/dist/*.*
 apps/**/mobile/hot/*.*
 apps/**/mobile/css/*.*
-
+**/*.gz
 
 # test documents
 apps/presentationeditor/embed/document

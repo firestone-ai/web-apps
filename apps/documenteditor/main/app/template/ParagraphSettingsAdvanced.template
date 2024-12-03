@@ -130,6 +130,9 @@
                 <td class="padding-small padding-left-40">
                     <div id="paragraphadv-checkbox-subscript"></div>
                 </td>
+                <td class="padding-small padding-left-40">
+                    <div id="paragraphadv-checkbox-emmark"></div>
+                </td>
             </tr>
             <tr>
                 <td class="padding-small">
