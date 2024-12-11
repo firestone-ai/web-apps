@@ -10,6 +10,23 @@
                     <div id="paragraphadv-spin-outline-level"></div>
                 </div>
             </div>
+            <div><label class="header padding-very-small"><%= scope.strChineseSetting %></label></div>
+            <div>
+                <div class="padding-large" style="display: inline-block;">
+                <table cols="2" style="width: 100%;" role="presentation">
+                    <tr>
+                    <td class="padding-small">
+                    <label class="input-label"><%= scope.vertTextAlign %></label>
+                    </td>
+                    <td>:</td>
+                    <td class="padding-small padding-left-40">
+                    <div id="paragraphadv-spin-vert-text-alignment"></div>
+                    </td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+
             <div><label class="header padding-very-small"><%= scope.strIndent %></label></div>
             <div>
                 <div class="padding-large margin-right-3" style="display: inline-block;">

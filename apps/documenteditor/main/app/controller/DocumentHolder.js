@@ -57,6 +57,14 @@ var c_paragraphTextAlignment = {
     JUSTIFIED: 3
 };
 
+var c_paragraphVertTextAlignment = {
+    AUTO: 0,
+    BASELINE: 1,
+    BOTTOM: 2,
+    CENTERED:3,
+    TOP: 4
+};
+
 var c_pageNumPosition = {
     PAGE_NUM_POSITION_TOP: 0x01,
     PAGE_NUM_POSITION_BOTTOM: 0x02,

@@ -113,6 +113,14 @@ define([
                 {displayValue: this.textJustified, value: c_paragraphTextAlignment.JUSTIFIED}
             ];
 
+            this._arrVertTextAlignment = [
+                {displayValue: this.textAlignTop, value: c_paragraphVertTextAlignment.TOP},
+                {displayValue: this.textAlignCenter, value: c_paragraphVertTextAlignment.CENTERED},
+                {displayValue: this.textAlignBaseline, value: c_paragraphVertTextAlignment.BASELINE},
+                {displayValue: this.textAlignBottom, value: c_paragraphVertTextAlignment.BOTTOM},
+                {displayValue: this.textAlignAuto, value: c_paragraphVertTextAlignment.AUTO}
+            ];
+
             this._arrOutlinelevel = [{displayValue: this.textBodyText, value: -1}];
             for (var i=0; i<9; i++) {
                 this._arrOutlinelevel.push({displayValue: this.textLevel + ' ' + (i+1), value: i});
@@ -310,6 +318,17 @@ define([
             });
             this.cmbOutlinelevel.setValue(-1);
             this.cmbOutlinelevel.on('selected', _.bind(this.onOutlinelevelSelect, this));
+
+            this.cmbVertTextAlignment = new Common.UI.ComboBox({
+                el: $('#paragraphadv-spin-vert-text-alignment'),
+                cls: 'input-group-nr',
+                editable: false,
+                data: this._arrVertTextAlignment,
+                style: 'width: 173px;',
+                menuStyle   : 'min-width: 173px;',
+                takeFocusOnClose: true
+            });
+            this.cmbVertTextAlignment.setValue('');
 
             // Line & Page Breaks
 
@@ -847,6 +866,9 @@ define([
             var horizontalAlign = this.cmbTextAlignment.getValue();
             this._changedProps.asc_putJc((horizontalAlign !== undefined && horizontalAlign !== null) ? horizontalAlign : c_paragraphTextAlignment.LEFT);
 
+            var vertAlign = this.cmbVertTextAlignment.getValue();
+            this._changedProps.asc_putTextAlignment((vertAlign !== undefined && vertAlign !== null) ? vertAlign : c_paragraphVertTextAlignment.AUTO);
+
             return { paragraphProps: this._changedProps, borderProps: {borderSize: this.BorderSize, borderColor: this.btnBorderColor.isAutoColor() ? 'auto' : this.btnBorderColor.color} };
         },
 
@@ -888,6 +910,8 @@ define([
                 this.numSpecialBy.setValue(this.FirstLine!== null ? Math.abs(Common.Utils.Metric.fnRecalcFromMM(this.FirstLine)) : '', true);
 
                 this.cmbTextAlignment.setValue((props.get_Jc() !== undefined && props.get_Jc() !== null) ? props.get_Jc() : c_paragraphTextAlignment.LEFT, true);
+
+                this.cmbVertTextAlignment.setValue((props.get_TextAlignment() !== undefined && props.get_Jc() !== null) ? props.get_TextAlignment() : c_paragraphTextAlignment.AUTO, true);
 
                 this.chKeepLines.setValue((props.get_KeepLines() !== null && props.get_KeepLines() !== undefined) ? props.get_KeepLines() : 'indeterminate', true);
                 this.chBreakBefore.setValue((props.get_PageBreakBefore() !== null && props.get_PageBreakBefore() !== undefined) ? props.get_PageBreakBefore() : 'indeterminate', true);
@@ -1545,6 +1569,13 @@ define([
         textTabLeft: 'Left',
         textTabRight: 'Right',
         textTabCenter: 'Center',
+        strChineseSetting: '中文版式',
+        vertTextAlign: '文本对齐方式',
+        textAlignTop: 'Top',
+        textAlignCenter: 'Center',
+        textAlignBottom: 'Bottom',
+        textAlignBaseline: 'Baseline',
+        textAlignAuto: 'Auto',
         textAlign: 'Alignment',
         textTabPosition: 'Tab Position',
         textDefault: 'Default Tab',
@@ -1601,7 +1632,7 @@ define([
         textStandardContextDiscret: 'Standard, Contextual and Discretionary',
         textStandardHistDiscret: 'Standard, Historical and Discretionary',
         textContextHistDiscret: 'Contextual, Historical and Discretionary',
-        textAll: 'All'
+        textAll: 'All'        
 
     }, DE.Views.ParagraphSettingsAdvanced || {}));
 });
