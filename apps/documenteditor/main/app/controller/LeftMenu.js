@@ -187,8 +187,11 @@ define([
             this.getApplication().getController('PageThumbnails').setApi(this.api).setMode(this.mode);
             this.getApplication().getController('Search').setApi(this.api).setMode(this.mode);
             this.leftMenu.setOptionsPanel('advancedsearch', this.getApplication().getController('Search').getView('Common.Views.SearchPanel'));
+
+            this.api.asc_registerCallback('asc_onOpenPlugin', _.bind(this.openPlugin, this));
             return this;
         },
+        
 
         setMode: function(mode) {
             this.mode = mode;
