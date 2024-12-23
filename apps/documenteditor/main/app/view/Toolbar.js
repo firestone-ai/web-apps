@@ -3183,7 +3183,14 @@ define([
                 this.api.asc_registerCallback('asc_onAuthParticipantsChanged', _.bind(this.onApiUsersChanged, this));
                 this.api.asc_registerCallback('asc_onParticipantsChanged', _.bind(this.onApiUsersChanged, this));
                 /** coauthoring end **/
+
+                this.api.asc_registerCallback('asc_onSetTab', _.bind(this.onSetTab, this));
                 return this;
+            },
+
+            onSetTab: function(tableName) {
+                var me = this;
+                me.setTab(tableName);
             },
 
             setMode: function (mode) {
