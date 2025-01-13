@@ -97,8 +97,11 @@
                 </td>
             </tr>
             <tr>
-                <td class="padding-small" colspan="2">
+                <td class="padding-small" >
                     <div id="paragraphadv-checkbox-suppress-line-numbers"></div>
+                </td>
+                <td class="padding-small" >
+                    <div id="paragraphadv-checkbox-word-wrap"></div>
                 </td>
             </tr>
         </table>

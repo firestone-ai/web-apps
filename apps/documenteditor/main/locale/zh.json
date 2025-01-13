@@ -2862,6 +2862,7 @@
   "DE.Views.ParagraphSettingsAdvanced.strSmallCaps": "小型大写字母",
   "DE.Views.ParagraphSettingsAdvanced.strSomeParagraphSpace": "不要在相同样式的段落之间添加间隔",
   "DE.Views.ParagraphSettingsAdvanced.strSnapToGrid": "如果定义了文档网格，则与网格对齐",
+  "DE.Views.ParagraphSettingsAdvanced.strWordWrap": "允许西文在单词的中间换行",
   "DE.Views.ParagraphSettingsAdvanced.strSpacing": "间距",
   "DE.Views.ParagraphSettingsAdvanced.strStrike": "删除线",  
   "DE.Views.ParagraphSettingsAdvanced.strSubscript": "下标",

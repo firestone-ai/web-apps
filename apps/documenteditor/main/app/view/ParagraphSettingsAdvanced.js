@@ -271,6 +271,11 @@ define([
                 labelText: this.strSnapToGrid
             });
 
+            this.chWordWrap = new Common.UI.CheckBox({
+                el: $('#paragraphadv-checkbox-word-wrap'),
+                labelText: this.strWordWrap
+            });
+
             this.cmbSpecial = new Common.UI.ComboBox({
                 el: $('#paragraphadv-spin-special'),
                 cls: 'input-group-nr',
@@ -863,6 +868,9 @@ define([
             var snapToGrid = this.chSnapToGrid.getValue();
             this._changedProps.asc_putSnapToGrid(snapToGrid == 'checked');
 
+            var wordWrap = this.chWordWrap.getValue();
+            this._changedProps.asc_putWordWrap(wordWrap !== 'checked');
+
             var horizontalAlign = this.cmbTextAlignment.getValue();
             this._changedProps.asc_putJc((horizontalAlign !== undefined && horizontalAlign !== null) ? horizontalAlign : c_paragraphTextAlignment.LEFT);
 
@@ -921,11 +929,8 @@ define([
 
                 this.chLineNumbers.setValue((props.get_SuppressLineNumbers() !== null && props.get_SuppressLineNumbers() !== undefined) ? props.get_SuppressLineNumbers() : 'indeterminate', true);
               
-
-                this.chSnapToGrid.setValue((props.get_SnapToGrid() !== null && props.get_SnapToGrid() !== undefined) ? props.get_SnapToGrid() : 'indeterminate', true);
-
-                this.chSnapToGrid.setValue((props.get_SnapToGrid() !== null && props.get_SnapToGrid() !== undefined) ? props.get_SnapToGrid() : 'indeterminate', true);
-
+                this.chWordWrap.setValue((props.get_WordWrap() !== null && props.get_WordWrap() !== undefined) ? !props.get_WordWrap() : 'indeterminate', false);
+                
                 this.Borders = new Asc.asc_CParagraphBorders(props.get_Borders());
 
                 // Margins
@@ -1605,6 +1610,7 @@ define([
         textExact: 'Exactly',
         strSomeParagraphSpace: 'Don\'t add interval between paragraphs of the same style',
         strSnapToGrid: 'Snap to grid when document grid is defined',
+        strWordWrap: 'Allow Western text to wrap in the middle of a word',
         strIndentsSpecial: 'Special',
         textNoneSpecial: '(none)',
         textFirstLine: 'First line',
